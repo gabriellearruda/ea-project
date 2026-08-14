@@ -31,6 +31,3 @@ Each study embeds its own premises implicitly and non-standardized, preventing r
 - Database: Supabase (Postgres + Auth)
 - Uncertainty modeling: [Squiggle](https://www.squiggle-language.com/)
 
-## License
-
-MIT

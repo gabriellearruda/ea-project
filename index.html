@@ -17,6 +17,10 @@
     --teal-soft:#E4F0EE;
     --amber:#C9860E;
     --amber-soft:#FBF0DC;
+    --purple:#5B6EE1;
+    --purple-soft:#ECEFFE;
+    --rose:#B94F6A;
+    --rose-soft:#F9E8ED;
     --radius:10px;
     --shadow:0 1px 2px rgba(21,28,44,0.04), 0 8px 24px -12px rgba(21,28,44,0.12);
   }
@@ -34,7 +38,7 @@
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:1180px;margin:0 auto;padding:0 28px 80px;}
-  a{color:inherit;}
+  a{color:inherit;text-decoration:none;}
   :focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
 
   /* ---- header ---- */
@@ -42,10 +46,10 @@
     display:flex;align-items:center;justify-content:space-between;
     padding:22px 28px;max-width:1180px;margin:0 auto;
   }
-  .brand{display:flex;align-items:center;gap:12px;}
+  .brand{display:flex;align-items:center;gap:12px;cursor:pointer;}
   .brand svg{display:block;}
   .brand-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.01em;}
-  nav{display:flex;gap:28px;font-size:14px;font-weight:500;}
+  nav{display:flex;gap:28px;font-size:14px;font-weight:500;align-items:center;}
   nav a{text-decoration:none;color:var(--ink-soft);padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s, border-color .15s;}
   nav a.active,nav a:hover{color:var(--ink);border-color:var(--teal);}
   @media(max-width:720px){nav{display:none;}}
@@ -61,28 +65,109 @@
     font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(28px,4vw,42px);
     line-height:1.12;letter-spacing:-0.015em;margin:0 0 16px;max-width:780px;
   }
-  .hero p{font-size:16px;line-height:1.55;color:var(--ink-soft);max-width:600px;margin:0;}
+  .hero p{font-size:16px;line-height:1.55;color:var(--ink-soft);max-width:600px;margin:0 0 20px;}
 
-  /* ---- layout ---- */
-  .studies-panel{margin-top:32px;}
-  .sim-panel{margin-top:24px;}
-  .panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);}
-  .panel-head{padding:18px 20px 14px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
+  /* ---- panel ---- */
+  .panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin-top:24px;}
+  .panel-head{
+    padding:16px 20px 14px;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
   .panel-head h2{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;margin:0;}
-  .panel-head .count{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
-  .panel-body{padding:16px;display:flex;flex-direction:column;gap:12px;}
+  .panel-head-right{display:flex;align-items:center;gap:10px;}
+  .count{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
 
-  .hint{
-    font-size:12.5px;line-height:1.5;color:var(--ink-soft);background:var(--paper);
-    border:1px solid var(--line);border-radius:7px;padding:9px 12px;margin:2px 0 4px;
+  /* ---- org bar ---- */
+  .org-bar{
+    padding:16px 20px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--line);
   }
-  .hint b{color:var(--ink);}
+  .org-avatar{
+    width:44px;height:44px;border-radius:10px;background:var(--teal);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .org-avatar svg{display:block;}
+  .org-info{flex:1;min-width:0;}
+  .org-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;}
+  .org-meta{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+  .org-edit{
+    font-size:12.5px;font-family:'IBM Plex Mono',monospace;color:var(--ink-soft);
+    border:1px solid var(--line);border-radius:6px;padding:5px 10px;background:#fff;
+    cursor:not-allowed;opacity:0.55;
+  }
 
-  /* ---- studies grid (side by side) ---- */
-  .studies-grid{
-    display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;
+  /* ---- programs grid ---- */
+  .programs-body{padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  @media(max-width:900px){.programs-body{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.programs-body{grid-template-columns:1fr;}}
+
+  .prog-card{
+    border:1px solid var(--line);border-radius:8px;padding:16px;background:#fff;
+    display:flex;flex-direction:column;gap:10px;cursor:pointer;
+    transition:box-shadow .15s, border-color .15s;
   }
-  @media(max-width:920px){.studies-grid{grid-template-columns:1fr;}}
+  .prog-card:hover{box-shadow:0 4px 16px -4px rgba(21,28,44,0.12);border-color:var(--teal);}
+  .prog-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+  .prog-icon{
+    width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;
+  }
+  .prog-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;line-height:1.3;flex:1;}
+  .prog-cause{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border-radius:20px;white-space:nowrap;
+  }
+  .prog-curve{width:100%;height:40px;}
+  .prog-stats{display:flex;gap:14px;padding-top:6px;border-top:1px solid var(--line);}
+  .prog-stat{display:flex;flex-direction:column;gap:2px;}
+  .prog-stat-label{font-size:10.5px;color:var(--ink-soft);}
+  .prog-stat-val{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:var(--ink);}
+  .prog-arrow{align-self:center;margin-left:auto;color:var(--line);font-size:18px;transition:color .15s;}
+  .prog-card:hover .prog-arrow{color:var(--teal);}
+
+  /* ---- add cards ---- */
+  .add-card{
+    border:1.5px dashed var(--line);border-radius:8px;padding:20px 16px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    cursor:pointer;background:transparent;font-family:'IBM Plex Sans',sans-serif;
+    transition:border-color .15s,color .15s;min-height:160px;
+  }
+  .add-card:hover{border-color:var(--teal);color:var(--teal);}
+  .add-card-icon{font-size:24px;color:var(--line);transition:color .15s;}
+  .add-card:hover .add-card-icon{color:var(--teal);}
+  .add-card-label{font-size:13px;font-weight:500;color:var(--ink-soft);}
+  .add-card-sub{font-size:11.5px;color:var(--ink-soft);opacity:.7;text-align:center;}
+  .add-card:hover .add-card-label{color:var(--teal);}
+
+  /* ---- assumption sets bar ---- */
+  .sets-bar{
+    padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line);
+  }
+  .set-chip{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;padding:5px 12px;border-radius:20px;
+    border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .15s;
+  }
+  .set-chip.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .set-chip:hover:not(.active){border-color:var(--teal);color:var(--teal);}
+  .add-set-chip{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;padding:5px 12px;border-radius:20px;
+    border:1.5px dashed var(--line);background:transparent;color:var(--ink-soft);cursor:pointer;transition:all .15s;
+  }
+  .add-set-chip:hover{border-color:var(--teal);color:var(--teal);}
+
+  /* ---- detail view ---- */
+  #view-detail{display:none;}
+  .back-btn{
+    display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:500;
+    color:var(--ink-soft);cursor:pointer;margin-bottom:16px;padding:6px 0;
+    border:none;background:transparent;font-family:'IBM Plex Sans',sans-serif;
+    transition:color .15s;
+  }
+  .back-btn:hover{color:var(--teal);}
+  .prog-detail-hero{padding:32px 0 24px;border-bottom:1px solid var(--line);}
+  .prog-detail-hero .eyebrow{color:var(--ink-soft);}
+  .prog-detail-hero .eyebrow::before{background:var(--ink-soft);}
+
+  /* ---- studies grid ---- */
+  .studies-grid{padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  @media(max-width:900px){.studies-grid{grid-template-columns:1fr;}}
 
   .study{
     border:1px solid var(--line);border-radius:8px;padding:14px 16px;background:#fff;
@@ -95,20 +180,15 @@
     background:var(--teal-soft);padding:3px 8px;border-radius:20px;white-space:nowrap;margin-top:2px;
   }
   .study-curve{width:100%;height:44px;}
-
   .prem-table{display:flex;flex-direction:column;gap:5px;border-top:1px solid var(--line);padding-top:9px;}
   .prem-row{display:flex;align-items:baseline;justify-content:space-between;font-size:11.5px;}
   .prem-label{color:var(--ink-soft);}
   .prem-value{font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--ink);}
-
   .conv{display:flex;align-items:center;gap:8px;font-size:12.5px;padding-top:8px;border-top:1px dashed var(--line);}
   .conv .raw{color:var(--ink-soft);}
   .conv .arrow{color:var(--line);}
   .conv .norm{font-weight:600;color:var(--amber);font-family:'IBM Plex Mono',monospace;}
-  .conv-tag{
-    font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.03em;text-transform:uppercase;
-    color:var(--ink-soft);
-  }
+  .conv-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.03em;text-transform:uppercase;color:var(--ink-soft);}
 
   .add-study{
     border:1.5px dashed var(--line);border-radius:8px;padding:16px;text-align:center;
@@ -117,27 +197,27 @@
   }
   .add-study:hover{border-color:var(--teal);color:var(--teal);}
 
-  /* ---- simulation panel: two columns inside one panel ---- */
-  .sim-layout{
-    display:grid;grid-template-columns:1fr 1fr;gap:0;
-  }
-  @media(max-width:920px){.sim-layout{grid-template-columns:1fr;}}
+  /* ---- simulation panel ---- */
+  .sim-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+  @media(max-width:900px){.sim-layout{grid-template-columns:1fr;}}
   .sim-col{padding:16px 20px;display:flex;flex-direction:column;gap:12px;}
   .sim-col.controls{border-right:1px solid var(--line);}
-  @media(max-width:920px){.sim-col.controls{border-right:none;border-bottom:1px solid var(--line);}}
+  @media(max-width:900px){.sim-col.controls{border-right:none;border-bottom:1px solid var(--line);}}
   .sim-subhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:2px;}
   .sim-subhead h3{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin:0;}
-  .sim-subhead .count{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-soft);}
 
-  /* ---- sliders ---- */
+  .hint{
+    font-size:12.5px;line-height:1.5;color:var(--ink-soft);background:var(--paper);
+    border:1px solid var(--line);border-radius:7px;padding:9px 12px;margin:2px 0 4px;
+  }
+  .hint b{color:var(--ink);}
+
   .control{margin-bottom:18px;}
   .control:last-child{margin-bottom:0;}
   .control-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;}
   .control-label span:first-child{color:var(--ink-soft);}
   .control-label .val{font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--ink);}
-  input[type="range"]{
-    -webkit-appearance:none;width:100%;height:4px;border-radius:2px;background:var(--line);outline:none;
-  }
+  input[type="range"]{-webkit-appearance:none;width:100%;height:4px;border-radius:2px;background:var(--line);outline:none;}
   input[type="range"]::-webkit-slider-thumb{
     -webkit-appearance:none;width:16px;height:16px;border-radius:50%;
     background:var(--teal);border:3px solid #fff;box-shadow:0 0 0 1px var(--teal);cursor:pointer;margin-top:-6px;
@@ -150,14 +230,12 @@
   .agg-curve-label{font-size:12px;color:var(--ink-soft);margin-bottom:6px;display:flex;justify-content:space-between;}
   .agg-curve-label b{color:var(--ink);font-weight:600;}
 
-  /* ---- ranking ---- */
   .rank-row{display:grid;grid-template-columns:110px 1fr 56px;align-items:center;gap:10px;font-size:12.5px;padding:6px 0;}
   .rank-name{color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .rank-track{height:8px;background:var(--paper);border-radius:5px;overflow:hidden;border:1px solid var(--line);}
-  .rank-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--amber));border-radius:5px;transition:width .35s ease;}
+  .rank-fill{height:100%;border-radius:5px;transition:width .35s ease;}
   .rank-val{font-family:'IBM Plex Mono',monospace;text-align:right;color:var(--ink);}
 
-  /* ---- footer actions ---- */
   .actions{display:flex;align-items:center;gap:12px;padding:16px 20px;border-top:1px solid var(--line);flex-wrap:wrap;}
   .btn{
     font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;font-weight:500;padding:9px 16px;border-radius:7px;
@@ -165,7 +243,6 @@
   }
   .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
   .actions .note{font-size:11.5px;color:var(--ink-soft);margin-left:auto;font-family:'IBM Plex Mono',monospace;}
-  @media(max-width:600px){.actions .note{margin-left:0;width:100%;}}
 
   .badge-row{display:flex;gap:10px;align-items:center;margin-top:28px;}
   .oss-badge{
@@ -173,15 +250,13 @@
     color:var(--ink-soft);border:1px solid var(--line);padding:5px 10px;border-radius:20px;background:var(--paper-raised);
   }
 
-  @media (prefers-reduced-motion: reduce){
-    *{transition:none !important;}
-  }
+  @media(prefers-reduced-motion:reduce){*{transition:none !important;}}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="brand">
+  <div class="brand" onclick="showPortfolio()">
     <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
       <circle cx="15" cy="15" r="14" fill="var(--paper-raised)" stroke="var(--line)"/>
       <path d="M4 17c2-6 4-9 6-9s3 9 5 9 3-11 5-11 3 11 5 11" stroke="var(--teal)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
@@ -197,154 +272,348 @@
 
 <div class="wrap">
 
-  <section class="hero">
-    <div class="eyebrow">Visual prototype · MVP</div>
-    <h1>Compare CEAs from different authors under the same assumptions.</h1>
-    <p>Each study comes in with its own assumptions. Adjust discount rate, time horizon, and moral weight to see how the ranking — and the whole portfolio — changes.</p>
-  </section>
+  <!-- ========== PORTFOLIO VIEW ========== -->
+  <div id="view-portfolio">
 
-  <div class="panel studies-panel">
-    <div class="panel-head">
-      <h2>Studies in portfolio</h2>
-      <span class="count" id="study-count">3 studies</span>
-    </div>
-    <div class="panel-body studies-grid" id="studies"></div>
-    <div class="panel-body" style="padding-top:0;">
-      <button class="add-study" type="button">+ Add study (manual upload — phase 1)</button>
-    </div>
-  </div>
+    <section class="hero">
+      <div class="eyebrow">Visual prototype · MVP</div>
+      <h1>Compare CEAs from different authors under the same assumptions.</h1>
+      <p>Each study embeds its own premises implicitly. Add your organization's programs, attach cost-effectiveness analyses, and simulate how a shared assumption change shifts the ranking.</p>
+    </section>
 
-  <div class="panel sim-panel">
-    <div class="panel-head">
-      <h2>Portfolio simulation</h2>
-      <span class="count">shared assumptions</span>
-    </div>
-    <div class="sim-layout">
-
-      <div class="sim-col controls">
-        <div class="hint"><b>Studies above stay fixed</b> — they show each author's original assumptions and result. The controls below only recalculate the ranking on the right.</div>
-
-        <div class="control">
-          <div class="control-label"><span>Annual discount rate</span><span class="val" id="v-discount">3%</span></div>
-          <input type="range" id="discount" min="0" max="10" step="0.5" value="3">
+    <!-- Organization panel -->
+    <div class="panel" style="margin-top:32px;">
+      <div class="org-bar">
+        <div class="org-avatar">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
         </div>
-
-        <div class="control">
-          <div class="control-label"><span>Time horizon</span><span class="val" id="v-horizon">15 years</span></div>
-          <input type="range" id="horizon" min="1" max="50" step="1" value="15">
+        <div class="org-info">
+          <div class="org-name">Instituto Saúde Brasil</div>
+          <div class="org-meta">3 programs · 7 studies · assumption set: EA Infrastructure baseline</div>
         </div>
+        <button class="org-edit" type="button">Edit org</button>
+      </div>
 
-        <div class="control">
-          <div class="control-label"><span>Cross-species moral weight</span><span class="val" id="v-moral">0.05</span></div>
-          <input type="range" id="moral" min="1" max="100" step="1" value="5">
-        </div>
+      <!-- Assumption sets -->
+      <div class="sets-bar">
+        <span style="font-size:12px;color:var(--ink-soft);margin-right:4px;">Assumption set:</span>
+        <button class="set-chip active" type="button">EA Infrastructure baseline</button>
+        <button class="set-chip" type="button">GiveWell 2024</button>
+        <button class="set-chip" type="button">Conservative</button>
+        <button class="add-set-chip" type="button" onclick="alert('+ New assumption set — coming in phase 1')">+ New set</button>
+      </div>
 
-        <div class="agg-curve-wrap">
-          <div class="agg-curve-label"><span>Aggregate portfolio distribution</span><b id="agg-mean">—</b></div>
-          <svg id="agg-curve" width="100%" height="70" viewBox="0 0 520 70" preserveAspectRatio="none"></svg>
+      <div class="panel-head" style="border-top:1px solid var(--line);">
+        <h2>Programs</h2>
+        <div class="panel-head-right">
+          <span class="count" id="prog-count">3 programs</span>
         </div>
       </div>
 
-      <div class="sim-col ranking">
-        <div class="sim-subhead">
-          <h3>Normalized ranking</h3>
-          <span class="count">expected value / $1,000</span>
-        </div>
-        <div id="ranking"></div>
+      <div class="programs-body" id="programs-grid">
+        <!-- rendered by JS -->
+      </div>
+    </div>
 
-        <div class="actions" style="margin:8px -20px -16px;">
-          <button class="btn" type="button" title="Disabled in prototype">Save portfolio</button>
-          <button class="btn primary" type="button" title="Disabled in prototype">Publish portfolio</button>
-          <span class="note">illustrative data — no real calculation</span>
+    <div class="badge-row">
+      <span class="oss-badge">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.49c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.72-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        open source
+      </span>
+      <span class="oss-badge">Engine: Squiggle</span>
+    </div>
+
+  </div><!-- /view-portfolio -->
+
+
+  <!-- ========== PROGRAM DETAIL VIEW ========== -->
+  <div id="view-detail">
+
+    <div class="prog-detail-hero">
+      <button class="back-btn" onclick="showPortfolio()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to portfolio
+      </button>
+      <div class="eyebrow" id="detail-eyebrow">Instituto Saúde Brasil</div>
+      <h1 id="detail-title">Program</h1>
+      <p id="detail-desc" style="font-size:16px;line-height:1.55;color:var(--ink-soft);max-width:600px;margin:0;"></p>
+    </div>
+
+    <!-- Studies panel -->
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Studies in this program</h2>
+        <span class="count" id="study-count">— studies</span>
+      </div>
+      <div class="studies-grid" id="studies"></div>
+      <div style="padding:0 16px 16px;">
+        <button class="add-study" type="button">+ Add study (upload or link — phase 1)</button>
+      </div>
+    </div>
+
+    <!-- Simulation panel -->
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Portfolio simulation</h2>
+        <span class="count">shared assumptions · <span id="active-set-name">EA Infrastructure baseline</span></span>
+      </div>
+      <div class="sim-layout">
+        <div class="sim-col controls">
+          <div class="hint"><b>Studies above stay fixed</b> — they show each author's original assumptions and result. The controls below only recalculate the ranking on the right.</div>
+          <div class="control">
+            <div class="control-label"><span>Annual discount rate</span><span class="val" id="v-discount">3%</span></div>
+            <input type="range" id="discount" min="0" max="10" step="0.5" value="3">
+          </div>
+          <div class="control">
+            <div class="control-label"><span>Time horizon</span><span class="val" id="v-horizon">15 years</span></div>
+            <input type="range" id="horizon" min="1" max="50" step="1" value="15">
+          </div>
+          <div class="control">
+            <div class="control-label"><span>Cross-species moral weight</span><span class="val" id="v-moral">0.05</span></div>
+            <input type="range" id="moral" min="1" max="100" step="1" value="5">
+          </div>
+          <div class="agg-curve-wrap">
+            <div class="agg-curve-label"><span>Aggregate distribution</span><b id="agg-mean">—</b></div>
+            <svg id="agg-curve" width="100%" height="70" viewBox="0 0 520 70" preserveAspectRatio="none"></svg>
+          </div>
+        </div>
+        <div class="sim-col ranking">
+          <div class="sim-subhead">
+            <h3>Normalized ranking</h3>
+            <span class="count">expected value / $1,000</span>
+          </div>
+          <div id="ranking"></div>
+          <div class="actions" style="margin:8px -20px -16px;">
+            <button class="btn" type="button">Save portfolio</button>
+            <button class="btn primary" type="button">Publish portfolio</button>
+            <span class="note">illustrative data — no real calculation</span>
+          </div>
         </div>
       </div>
-
     </div>
-  </div>
 
-  <div class="badge-row">
-    <span class="oss-badge">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.49c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.72-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-      MIT · open source
-    </span>
-    <span class="oss-badge">Engine: Squiggle</span>
-  </div>
+    <div class="badge-row">
+      <span class="oss-badge">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.49c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.72-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        open source
+      </span>
+      <span class="oss-badge">Engine: Squiggle</span>
+    </div>
 
-</div>
+  </div><!-- /view-detail -->
+
+</div><!-- /wrap -->
 
 <script>
-  // Each study carries its OWN original assumptions, as published by its author.
-  // These never change — they represent the study "as submitted".
-  const studies = [
-    {
-      name: "Vitamin A supplementation",
-      cause: "Global health",
-      color: "#1D7A75",
-      raw: "$50 / DALY averted",
-      base: 62,
-      amplitude: 10, freq: 1.0, phase: 0,
-      origDiscount: 3, origHorizon: 10, origMoral: null
-    },
-    {
-      name: "Transition to cage-free systems",
-      cause: "Animal welfare",
-      color: "#C9860E",
-      raw: "$0.003 / cage-free day",
-      base: 44,
-      amplitude: 22, freq: 1.6, phase: 1.1,
-      origDiscount: 3, origHorizon: 5, origMoral: 0.05
-    },
-    {
-      name: "AI interpretability research",
-      cause: "AI risk",
-      color: "#5B6EE1",
-      raw: "qualitative estimate (low confidence)",
-      base: 30,
-      amplitude: 34, freq: 0.7, phase: 2.3,
-      origDiscount: 7, origHorizon: 30, origMoral: null
-    }
-  ];
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const programs = [
+  {
+    id: "mental",
+    name: "Mental Health",
+    icon: "🧠",
+    color: "#5B6EE1",
+    colorSoft: "#ECEFFE",
+    cause: "Global health",
+    desc: "Scalable mental health interventions targeting depression and anxiety in LMICs, with emphasis on task-sharing models.",
+    studies: [
+      {
+        name: "StrongMinds group therapy",
+        cause: "Mental health",
+        color: "#5B6EE1",
+        raw: "$248 / year of depression-free life",
+        base: 58, amplitude: 12, freq: 1.1, phase: 0.3,
+        origDiscount: 3, origHorizon: 10, origMoral: null
+      },
+      {
+        name: "Tele-counselling (rural)",
+        cause: "Mental health",
+        color: "#5B6EE1",
+        raw: "$320 / DALY averted",
+        base: 44, amplitude: 18, freq: 0.9, phase: 1.2,
+        origDiscount: 5, origHorizon: 8, origMoral: null
+      }
+    ]
+  },
+  {
+    id: "maternal",
+    name: "Maternal Health",
+    icon: "🤱",
+    color: "#B94F6A",
+    colorSoft: "#F9E8ED",
+    cause: "Global health",
+    desc: "Reducing maternal and neonatal mortality through skilled birth attendance, antenatal care, and emergency obstetric access.",
+    studies: [
+      {
+        name: "Skilled birth attendance scale-up",
+        cause: "Maternal health",
+        color: "#B94F6A",
+        raw: "$180 / DALY averted",
+        base: 72, amplitude: 9, freq: 1.3, phase: 0.7,
+        origDiscount: 3, origHorizon: 15, origMoral: null
+      },
+      {
+        name: "Antenatal care package",
+        cause: "Maternal health",
+        color: "#B94F6A",
+        raw: "$95 / DALY averted",
+        base: 86, amplitude: 7, freq: 0.8, phase: 2.1,
+        origDiscount: 3, origHorizon: 12, origMoral: null
+      },
+      {
+        name: "Emergency obstetric referral",
+        cause: "Maternal health",
+        color: "#B94F6A",
+        raw: "$210 / death averted",
+        base: 61, amplitude: 14, freq: 1.5, phase: 0.4,
+        origDiscount: 4, origHorizon: 10, origMoral: null
+      }
+    ]
+  },
+  {
+    id: "cancer",
+    name: "Cancer Prevention",
+    icon: "🔬",
+    color: "#1D7A75",
+    colorSoft: "#E4F0EE",
+    cause: "Global health",
+    desc: "Early detection and prevention programs for cervical and breast cancer in sub-Saharan Africa and South Asia.",
+    studies: [
+      {
+        name: "HPV vaccination program",
+        cause: "Cancer prevention",
+        color: "#1D7A75",
+        raw: "$42 / DALY averted",
+        base: 91, amplitude: 6, freq: 1.0, phase: 1.8,
+        origDiscount: 3, origHorizon: 20, origMoral: null
+      },
+      {
+        name: "VIA cervical screening",
+        cause: "Cancer prevention",
+        color: "#1D7A75",
+        raw: "$67 / DALY averted",
+        base: 78, amplitude: 11, freq: 1.2, phase: 0.9,
+        origDiscount: 3, origHorizon: 15, origMoral: null
+      }
+    ]
+  }
+];
+
+// ─── HELPERS ────────────────────────────────────────────────────────────────
+
+function squigglePath(w, h, amp, freq, phase, seed){
+  const pts = [], steps = 48;
+  for(let i=0;i<=steps;i++){
+    const x = (i/steps)*w;
+    const t = (i/steps)*Math.PI*2*freq + phase;
+    const noise = Math.sin(t*2.7 + seed)*amp*0.18;
+    const y = h/2 + Math.sin(t)*amp*0.5 + noise;
+    pts.push([x,y]);
+  }
+  let d = `M ${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+  for(let i=1;i<pts.length;i++) d += ` L ${pts[i][0].toFixed(1)} ${pts[i][1].toFixed(1)}`;
+  return d;
+}
+
+function computeValue(s, discount, horizon, moral){
+  const df = Math.pow(1 - discount/100, horizon/12);
+  const mf = s.cause === 'Animal welfare' ? (0.3 + (moral||0)*1.4) : 1;
+  const hf = 0.6 + Math.min(horizon,50)/50*0.8;
+  return Math.max(s.base * df * mf * hf, 1);
+}
+
+// ─── PORTFOLIO VIEW ─────────────────────────────────────────────────────────
+
+function renderPortfolio(){
+  const grid = document.getElementById('programs-grid');
+  grid.innerHTML = '';
+
+  programs.forEach((p, pi) => {
+    // aggregate mini curve across studies
+    const avgAmp = p.studies.reduce((s,st)=>s+st.amplitude,0)/p.studies.length;
+    const d = squigglePath(280, 40, avgAmp, 1.0 + pi*0.2, pi*0.8, pi);
+    const avgVal = p.studies.reduce((s,st)=>s+computeValue(st,3,15,0.05),0)/p.studies.length;
+
+    const card = document.createElement('div');
+    card.className = 'prog-card';
+    card.onclick = () => showDetail(p.id);
+    card.innerHTML = `
+      <div class="prog-card-top">
+        <div class="prog-icon" style="background:${p.colorSoft};">${p.icon}</div>
+        <div style="flex:1;min-width:0;margin-left:10px;">
+          <div class="prog-name">${p.name}</div>
+        </div>
+        <div class="prog-cause" style="color:${p.color};background:${p.colorSoft};">${p.cause}</div>
+      </div>
+      <svg class="prog-curve" viewBox="0 0 280 40" preserveAspectRatio="none">
+        <path d="${d}" stroke="${p.color}" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+      </svg>
+      <div class="prog-stats">
+        <div class="prog-stat">
+          <div class="prog-stat-label">Studies</div>
+          <div class="prog-stat-val">${p.studies.length}</div>
+        </div>
+        <div class="prog-stat">
+          <div class="prog-stat-label">Avg. EV / $1k</div>
+          <div class="prog-stat-val">${avgVal.toFixed(1)} u</div>
+        </div>
+        <div class="prog-stat">
+          <div class="prog-stat-label">Assumption set</div>
+          <div class="prog-stat-val">baseline</div>
+        </div>
+        <div class="prog-arrow">›</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // Add program card
+  const addCard = document.createElement('button');
+  addCard.className = 'add-card';
+  addCard.type = 'button';
+  addCard.onclick = () => alert('Add program — upload CEA file or enter manually (phase 1)');
+  addCard.innerHTML = `
+    <div class="add-card-icon">＋</div>
+    <div class="add-card-label">Add program</div>
+    <div class="add-card-sub">Upload a spreadsheet or enter CEA manually</div>
+  `;
+  grid.appendChild(addCard);
+
+  document.getElementById('prog-count').textContent = programs.length + ' programs';
+}
+
+// ─── DETAIL VIEW ────────────────────────────────────────────────────────────
+
+let currentStudies = [];
+
+function showDetail(id){
+  const p = programs.find(x => x.id === id);
+  if(!p) return;
+  currentStudies = p.studies;
+
+  document.getElementById('view-portfolio').style.display = 'none';
+  document.getElementById('view-detail').style.display = 'block';
+  document.getElementById('detail-eyebrow').textContent = 'Instituto Saúde Brasil · ' + p.name;
+  document.getElementById('detail-title').textContent = p.name;
+  document.getElementById('detail-desc').textContent = p.desc;
+  document.getElementById('study-count').textContent = p.studies.length + ' studies';
 
   const studiesEl = document.getElementById('studies');
+  studiesEl.innerHTML = '';
   const rankingEl = document.getElementById('ranking');
-  document.getElementById('study-count').textContent = studies.length + ' studies';
+  rankingEl.innerHTML = '';
 
-  function squigglePath(w, h, amp, freq, phase, seed){
-    const pts = [];
-    const steps = 48;
-    for(let i=0;i<=steps;i++){
-      const x = (i/steps)*w;
-      const t = (i/steps)*Math.PI*2*freq + phase;
-      const noise = Math.sin(t*2.7 + seed)*amp*0.18;
-      const y = h/2 + Math.sin(t)*amp*0.5 + noise;
-      pts.push([x,y]);
-    }
-    let d = `M ${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
-    for(let i=1;i<pts.length;i++){
-      d += ` L ${pts[i][0].toFixed(1)} ${pts[i][1].toFixed(1)}`;
-    }
-    return d;
-  }
-
-  // Shared formula, used both for a study's fixed original value
-  // and for the simulated portfolio-wide value in the ranking.
-  function computeValue(s, discount, horizon, moral){
-    const discountFactor = Math.pow(1 - discount/100, horizon/12);
-    const moralFactor = s.cause === 'Animal welfare' ? (0.3 + (moral||0)*1.4) : 1;
-    const horizonFactor = 0.6 + Math.min(horizon,50)/50 * 0.8;
-    return Math.max(s.base * discountFactor * moralFactor * horizonFactor, 1);
-  }
-
-  function buildStudyCard(s, i){
+  p.studies.forEach((s, i) => {
     const origValue = computeValue(s, s.origDiscount, s.origHorizon, s.origMoral);
     const d = squigglePath(300, 44, s.amplitude, s.freq, s.phase, i);
-
     const card = document.createElement('div');
     card.className = 'study';
     card.innerHTML = `
       <div class="study-top">
         <div class="study-name">${s.name}</div>
-        <div class="study-cause">${s.cause}</div>
+        <div class="study-cause" style="color:${p.color};background:${p.colorSoft};">${s.cause}</div>
       </div>
       <svg class="study-curve" viewBox="0 0 300 44" preserveAspectRatio="none">
         <path d="${d}" stroke="${s.color}" stroke-width="2" fill="none" stroke-linecap="round"/>
@@ -357,73 +626,90 @@
       <div class="conv">
         <span class="raw">${s.raw}</span>
         <span class="arrow">→</span>
-        <span class="norm">${origValue.toFixed(1)} u/$1k</span>
+        <span class="norm" style="color:${p.color};">${origValue.toFixed(1)} u/$1k</span>
       </div>
       <div class="conv-tag">as published — fixed</div>
     `;
     studiesEl.appendChild(card);
-  }
 
-  function buildRankRow(s, i){
     const row = document.createElement('div');
     row.className = 'rank-row';
     row.dataset.index = i;
     row.innerHTML = `
       <div class="rank-name">${s.name}</div>
-      <div class="rank-track"><div class="rank-fill" id="fill-${i}" style="width:0%; background:${s.color}"></div></div>
+      <div class="rank-track"><div class="rank-fill" id="fill-${i}" style="background:${s.color};width:0%"></div></div>
       <div class="rank-val" id="rval-${i}">—</div>
     `;
     rankingEl.appendChild(row);
-  }
+  });
 
-  studies.forEach(buildStudyCard);
-  studies.forEach(buildRankRow);
+  // reset sliders
+  document.getElementById('discount').value = 3;
+  document.getElementById('horizon').value = 15;
+  document.getElementById('moral').value = 5;
+  recompute();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 
-  const discountEl = document.getElementById('discount');
-  const horizonEl = document.getElementById('horizon');
-  const moralEl = document.getElementById('moral');
+function showPortfolio(){
+  document.getElementById('view-portfolio').style.display = 'block';
+  document.getElementById('view-detail').style.display = 'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 
-  function recompute(){
-    const discount = parseFloat(discountEl.value);
-    const horizon = parseInt(horizonEl.value);
-    const moral = parseInt(moralEl.value) / 100;
+// ─── SIMULATION ─────────────────────────────────────────────────────────────
 
-    document.getElementById('v-discount').textContent = discount + '%';
-    document.getElementById('v-horizon').textContent = horizon + ' years';
-    document.getElementById('v-moral').textContent = moral.toFixed(2);
+function recompute(){
+  const discount = parseFloat(document.getElementById('discount').value);
+  const horizon  = parseInt(document.getElementById('horizon').value);
+  const moral    = parseInt(document.getElementById('moral').value) / 100;
 
-    // Simulated values use the SHARED slider assumptions — this only
-    // drives the ranking panel and the aggregate curve, never the
-    // study cards above, which always show each author's own numbers.
-    const values = studies.map(s => computeValue(s, discount, horizon, moral));
-    const max = Math.max(...values);
+  document.getElementById('v-discount').textContent = discount + '%';
+  document.getElementById('v-horizon').textContent  = horizon + ' years';
+  document.getElementById('v-moral').textContent    = moral.toFixed(2);
 
-    values.forEach((val, i) => {
-      const fillEl = document.getElementById(`fill-${i}`);
-      const rvalEl = document.getElementById(`rval-${i}`);
-      fillEl.style.width = ((val/max)*100).toFixed(0) + '%';
-      rvalEl.textContent = val.toFixed(1);
-    });
+  const values = currentStudies.map(s => computeValue(s, discount, horizon, moral));
+  const max = Math.max(...values, 1);
 
-    // reorder ranking rows by value, highest first
-    const rows = Array.from(rankingEl.children);
-    rows.sort((a,b) => values[b.dataset.index] - values[a.dataset.index]);
-    rows.forEach(r => rankingEl.appendChild(r));
+  values.forEach((val, i) => {
+    const fill = document.getElementById(`fill-${i}`);
+    const rval = document.getElementById(`rval-${i}`);
+    if(fill) fill.style.width = ((val/max)*100).toFixed(0) + '%';
+    if(rval) rval.textContent = val.toFixed(1);
+  });
 
-    // aggregate curve = combined shape under the simulated assumptions
-    const aggAmp = studies.reduce((sum,s)=> sum + s.amplitude,0)/studies.length * (0.5 + (1 - discount/12));
+  const rankingEl = document.getElementById('ranking');
+  const rows = Array.from(rankingEl.children);
+  rows.sort((a,b) => values[b.dataset.index] - values[a.dataset.index]);
+  rows.forEach(r => rankingEl.appendChild(r));
+
+  if(currentStudies.length){
+    const aggAmp = currentStudies.reduce((s,st)=>s+st.amplitude,0)/currentStudies.length * (0.5 + (1 - discount/12));
     const aggFreq = 1 * (0.6 + horizon/50);
     const aggD = squigglePath(520, 70, aggAmp, aggFreq, 0.5, 9);
     document.getElementById('agg-curve').innerHTML =
       `<path d="${aggD}" stroke="#151C2C" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
-
-    const meanVal = values.reduce((a,b)=>a+b,0)/values.length;
-    document.getElementById('agg-mean').textContent = meanVal.toFixed(1) + ' u/$1k (mean)';
+    const mean = values.reduce((a,b)=>a+b,0)/values.length;
+    document.getElementById('agg-mean').textContent = mean.toFixed(1) + ' u/$1k (mean)';
   }
+}
 
-  [discountEl, horizonEl, moralEl].forEach(el => el.addEventListener('input', recompute));
-  recompute();
+['discount','horizon','moral'].forEach(id => {
+  document.getElementById(id).addEventListener('input', recompute);
+});
+
+// Assumption set chips (visual only)
+document.querySelectorAll('.set-chip').forEach(chip => {
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('.set-chip').forEach(c => c.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById('active-set-name').textContent = this.textContent;
+    recompute();
+  });
+});
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+renderPortfolio();
 </script>
-
 </body>
 </html>
