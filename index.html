@@ -132,23 +132,39 @@
   .prog-detail-hero{padding:28px 0 22px;border-bottom:1px solid var(--line);}
   .prog-detail-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:var(--ink-soft);text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:12px;}
 
-  /* ---- studies grid ---- */
-  .studies-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:16px;}
-  @media(max-width:800px){.studies-list{grid-template-columns:1fr 1fr;}}
-  @media(max-width:520px){.studies-list{grid-template-columns:1fr;}}
-  .study{border:1px solid var(--line);border-radius:8px;padding:14px 16px;background:#fff;display:flex;flex-direction:column;gap:10px;}
-  .study-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
-  .study-name{font-weight:600;font-size:14px;}
-  .study-cause{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border-radius:20px;white-space:nowrap;margin-top:2px;flex-shrink:0;}
-  .prem-row-group{display:flex;gap:16px;flex-wrap:wrap;}
-  .prem-item{display:flex;flex-direction:column;gap:2px;}
-  .prem-label{font-size:11px;color:var(--ink-soft);}
-  .prem-value{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:500;color:var(--ink);}
-  .conv{display:flex;align-items:center;gap:8px;font-size:12.5px;padding-top:10px;border-top:1px dashed var(--line);}
-  .conv .raw{color:var(--ink-soft);}
-  .conv .arr{color:var(--line);}
-  .conv .norm{font-weight:600;font-family:'IBM Plex Mono',monospace;}
-  .conv-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.03em;text-transform:uppercase;color:var(--ink-soft);margin-left:auto;}
+  /* ---- studies comparison table ---- */
+  .studies-table-wrap{overflow-x:auto;padding:0;}
+  .studies-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  .studies-table th,
+  .studies-table td{padding:10px 16px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap;}
+  .studies-table thead th{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
+    color:var(--ink-soft);background:var(--paper);letter-spacing:0.02em;
+    position:sticky;top:0;
+  }
+  .studies-table thead th:first-child{min-width:140px;}
+  .studies-table tbody tr:last-child td{border-bottom:none;}
+  .studies-table tbody tr:hover td{background:rgba(29,122,117,0.03);}
+  .studies-table .row-label{
+    font-size:12px;color:var(--ink-soft);font-weight:500;
+  }
+  /* cell with diverging value */
+  .cell-diff{
+    background:var(--amber-soft) !important;
+    color:var(--amber);
+    font-family:'IBM Plex Mono',monospace;font-weight:600;
+    border-radius:5px;
+  }
+  /* EV result row */
+  .row-ev td{border-top:2px solid var(--line);background:var(--paper);}
+  .row-ev .row-label{color:var(--ink);font-weight:600;}
+  .ev-value{
+    font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;
+  }
+  .ev-best{color:var(--teal);}
+  .ev-worst{color:var(--ink-soft);}
+  td.mono{font-family:'IBM Plex Mono',monospace;color:var(--ink);}
+  .study-cause-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:20px;}
   .add-study{
     border:none;border-top:1px solid var(--line);padding:13px 20px;text-align:left;
     color:var(--ink-soft);font-size:13px;cursor:pointer;background:transparent;width:100%;
@@ -286,7 +302,7 @@
         <h2>Studies in this program</h2>
         <span class="count" id="study-count">—</span>
       </div>
-      <div class="studies-list" id="studies"></div>
+      <div class="studies-table-wrap"><table class="studies-table" id="studies"></table></div>
       <button class="add-study" type="button">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         Add study — upload or link spreadsheet
@@ -563,38 +579,60 @@ function showDetail(id){
   const rankingEl = document.getElementById('ranking');
   rankingEl.innerHTML = '';
 
-  p.studies.forEach((s, i) => {
-    const origValue = computeValue(s, s.origDiscount, s.origHorizon, s.origMoral || 0);
-    const card = document.createElement('div');
-    card.className = 'study';
-    card.innerHTML = `
-      <div class="study-top">
-        <div class="study-name">${s.name}</div>
-        <div class="study-cause" style="color:${p.color};background:${p.colorSoft};">${s.cause}</div>
-      </div>
-      <div class="prem-row-group">
-        <div class="prem-item">
-          <div class="prem-label">Discount rate</div>
-          <div class="prem-value">${s.origDiscount}%</div>
-        </div>
-        <div class="prem-item">
-          <div class="prem-label">Time horizon</div>
-          <div class="prem-value">${s.origHorizon}y</div>
-        </div>
-        <div class="prem-item">
-          <div class="prem-label">Moral weight</div>
-          <div class="prem-value">${s.origMoral === null ? 'n/a' : s.origMoral.toFixed(2)}</div>
-        </div>
-      </div>
-      <div class="conv">
-        <span class="raw">${s.raw}</span>
-        <span class="arr">→</span>
-        <span class="norm" style="color:${p.color};">${origValue.toFixed(1)} u/$1k</span>
-        <span class="conv-tag">as published · fixed</span>
-      </div>
-    `;
-    studiesEl.appendChild(card);
+  // ── build comparison table ──────────────────────────────────────────────
+  const studies = p.studies;
+  const evValues = studies.map(s => computeValue(s, s.origDiscount, s.origHorizon, s.origMoral || 0));
+  const maxEV = Math.max(...evValues);
+  const minEV = Math.min(...evValues);
 
+  // helper: are all values the same?
+  function allSame(arr){ return arr.every(v => v === arr[0]); }
+
+  const discounts = studies.map(s => s.origDiscount);
+  const horizons  = studies.map(s => s.origHorizon);
+  const morals    = studies.map(s => s.origMoral);
+
+  // header row
+  let thead = '<thead><tr><th>Premise</th>';
+  studies.forEach(s => {
+    thead += `<th>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;">${s.name}</div>
+      <span class="study-cause-tag" style="color:${p.color};background:${p.colorSoft};">${s.cause}</span>
+    </th>`;
+  });
+  thead += '</tr></thead>';
+
+  // body rows
+  function makeRow(label, values, fmt, isDiff){
+    const diff = !allSame(values);
+    let row = `<tr><td class="row-label">${label}</td>`;
+    values.forEach(v => {
+      const highlight = diff && isDiff ? 'cell-diff' : 'mono';
+      row += `<td class="${highlight}">${fmt(v)}</td>`;
+    });
+    return row + '</tr>';
+  }
+
+  let tbody = '<tbody>';
+  tbody += makeRow('Discount rate',  discounts, v => v + '%',                    true);
+  tbody += makeRow('Time horizon',   horizons,  v => v + ' years',               true);
+  tbody += makeRow('Moral weight',   morals,    v => v === null ? 'n/a' : v.toFixed(2), true);
+  tbody += makeRow('Cost metric',    studies.map(s => s.raw), v => v,            false);
+
+  // EV result row — highlighted
+  tbody += '<tr class="row-ev"><td class="row-label">Expected value</td>';
+  evValues.forEach(v => {
+    const cls = v === maxEV ? 'ev-best' : (v === minEV && studies.length > 1 ? 'ev-worst' : '');
+    tbody += `<td><span class="ev-value ${cls}" style="${v === maxEV ? `color:${p.color}` : ''}">${v.toFixed(1)} u/$1k</span>${v === maxEV ? ' <span style="font-size:10px;color:var(--ink-soft);">↑ highest</span>' : ''}</td>`;
+  });
+  tbody += '</tr>';
+  tbody += '<tr><td colspan="${studies.length+1}" style="padding:4px 16px 8px;font-family:\'IBM Plex Mono\',monospace;font-size:10px;color:var(--ink-soft);">As published by each author · fixed</td></tr>';
+  tbody += '</tbody>';
+
+  studiesEl.innerHTML = thead + tbody;
+
+  // ── ranking rows ────────────────────────────────────────────────────────
+  studies.forEach((s, i) => {
     const row = document.createElement('div');
     row.className = 'rank-row';
     row.dataset.index = i;
