@@ -429,21 +429,21 @@ const programs = [
         cause: "Mental health",
         raw: "$248 / year of depression-free life",
         base: 62,
-        origDiscount: 3, origHorizon: 10, origMoral: null
+        origDiscount: 3, origHorizon: 10, origMoral: 0.62
       },
       {
         name: "Tele-counselling (rural)",
         cause: "Mental health",
         raw: "$320 / DALY averted",
         base: 49,
-        origDiscount: 5, origHorizon: 8, origMoral: null
+        origDiscount: 5, origHorizon: 8, origMoral: 0.38
       },
       {
         name: "Peer support networks",
         cause: "Mental health",
         raw: "$190 / year of wellbeing",
         base: 71,
-        origDiscount: 3, origHorizon: 12, origMoral: null
+        origDiscount: 3, origHorizon: 12, origMoral: 0.55
       }
     ]
   },
@@ -461,21 +461,21 @@ const programs = [
         cause: "Maternal health",
         raw: "$180 / DALY averted",
         base: 78,
-        origDiscount: 3, origHorizon: 15, origMoral: null
+        origDiscount: 3, origHorizon: 15, origMoral: 0.71
       },
       {
         name: "Antenatal care package",
         cause: "Maternal health",
         raw: "$95 / DALY averted",
         base: 91,
-        origDiscount: 3, origHorizon: 12, origMoral: null
+        origDiscount: 3, origHorizon: 12, origMoral: 0.84
       },
       {
         name: "Emergency obstetric referral",
         cause: "Maternal health",
         raw: "$210 / death averted",
         base: 65,
-        origDiscount: 4, origHorizon: 10, origMoral: null
+        origDiscount: 4, origHorizon: 10, origMoral: 0.45
       }
     ]
   },
@@ -493,14 +493,14 @@ const programs = [
         cause: "Cancer prevention",
         raw: "$42 / DALY averted",
         base: 96,
-        origDiscount: 3, origHorizon: 20, origMoral: null
+        origDiscount: 3, origHorizon: 20, origMoral: 0.90
       },
       {
         name: "VIA cervical screening",
         cause: "Cancer prevention",
         raw: "$67 / DALY averted",
         base: 83,
-        origDiscount: 3, origHorizon: 15, origMoral: null
+        origDiscount: 3, origHorizon: 15, origMoral: 0.67
       }
     ]
   }
@@ -613,7 +613,7 @@ function showDetail(id){
   let tbody = '<tbody>';
   tbody += makeRow('Discount rate',  discounts, v => v + '%',                    true);
   tbody += makeRow('Time horizon',   horizons,  v => v + ' years',               true);
-  tbody += makeRow('Coverage rate',   morals,    v => v === null ? 'n/a' : v.toFixed(2), true);
+  tbody += makeRow('Coverage rate',   morals,    v => v === null ? 'n/a' : (v * 100).toFixed(0) + '%', true);
   tbody += makeRow('Cost metric',    studies.map(s => s.raw), v => v,            false);
 
   // EV result row — highlighted
