@@ -16,7 +16,6 @@
     --teal:#1D7A75;
     --teal-soft:#E4F0EE;
     --amber:#C9860E;
-    --amber-soft:#FBF0DC;
     --purple:#5B6EE1;
     --purple-soft:#ECEFFE;
     --rose:#B94F6A;
@@ -37,184 +36,166 @@
     font-family:'IBM Plex Sans', sans-serif;
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:1180px;margin:0 auto;padding:0 28px 80px;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 28px 80px;}
   a{color:inherit;text-decoration:none;}
   :focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
 
   /* ---- header ---- */
   header{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:22px 28px;max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;
+    padding:22px 28px;max-width:900px;margin:0 auto;
   }
   .brand{display:flex;align-items:center;gap:12px;cursor:pointer;}
-  .brand svg{display:block;}
   .brand-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.01em;}
-  nav{display:flex;gap:28px;font-size:14px;font-weight:500;align-items:center;}
-  nav a{text-decoration:none;color:var(--ink-soft);padding:6px 2px;border-bottom:2px solid transparent;transition:color .15s, border-color .15s;}
-  nav a.active,nav a:hover{color:var(--ink);border-color:var(--teal);}
-  @media(max-width:720px){nav{display:none;}}
 
   /* ---- hero ---- */
-  .hero{padding:44px 0 36px;border-bottom:1px solid var(--line);}
+  .hero{padding:24px 0 20px;border-bottom:1px solid var(--line);}
   .eyebrow{
     font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;
     color:var(--teal);text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:14px;
   }
   .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);}
   h1{
-    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(28px,4vw,42px);
-    line-height:1.12;letter-spacing:-0.015em;margin:0 0 16px;max-width:780px;
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,4vw,38px);
+    line-height:1.12;letter-spacing:-0.015em;margin:0 0 14px;max-width:680px;
   }
-  .hero p{font-size:16px;line-height:1.55;color:var(--ink-soft);max-width:600px;margin:0 0 20px;}
+  .hero p{font-size:15.5px;line-height:1.55;color:var(--ink-soft);max-width:580px;margin:0;}
 
   /* ---- panel ---- */
   .panel{background:var(--paper-raised);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin-top:24px;}
   .panel-head{
-    padding:16px 20px 14px;border-bottom:1px solid var(--line);
+    padding:14px 20px;border-bottom:1px solid var(--line);
     display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
   }
-  .panel-head h2{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;margin:0;}
-  .panel-head-right{display:flex;align-items:center;gap:10px;}
+  .panel-head h2{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin:0;}
   .count{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
 
   /* ---- org bar ---- */
-  .org-bar{
-    padding:16px 20px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--line);
-  }
+  .org-bar{padding:16px 20px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--line);}
   .org-avatar{
-    width:44px;height:44px;border-radius:10px;background:var(--teal);
+    width:40px;height:40px;border-radius:9px;background:var(--teal);
     display:flex;align-items:center;justify-content:center;flex-shrink:0;
   }
-  .org-avatar svg{display:block;}
   .org-info{flex:1;min-width:0;}
-  .org-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;}
-  .org-meta{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
-  .org-edit{
-    font-size:12.5px;font-family:'IBM Plex Mono',monospace;color:var(--ink-soft);
-    border:1px solid var(--line);border-radius:6px;padding:5px 10px;background:#fff;
-    cursor:not-allowed;opacity:0.55;
-  }
-
-  /* ---- programs grid ---- */
-  .programs-body{padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  @media(max-width:900px){.programs-body{grid-template-columns:1fr 1fr;}}
-  @media(max-width:560px){.programs-body{grid-template-columns:1fr;}}
-
-  .prog-card{
-    border:1px solid var(--line);border-radius:8px;padding:16px;background:#fff;
-    display:flex;flex-direction:column;gap:10px;cursor:pointer;
-    transition:box-shadow .15s, border-color .15s;
-  }
-  .prog-card:hover{box-shadow:0 4px 16px -4px rgba(21,28,44,0.12);border-color:var(--teal);}
-  .prog-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
-  .prog-icon{
-    width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;
-  }
-  .prog-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;line-height:1.3;flex:1;}
-  .prog-cause{
-    font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border-radius:20px;white-space:nowrap;
-  }
-  .prog-curve{width:100%;height:40px;}
-  .prog-stats{display:flex;gap:14px;padding-top:6px;border-top:1px solid var(--line);}
-  .prog-stat{display:flex;flex-direction:column;gap:2px;}
-  .prog-stat-label{font-size:10.5px;color:var(--ink-soft);}
-  .prog-stat-val{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:var(--ink);}
-  .prog-arrow{align-self:center;margin-left:auto;color:var(--line);font-size:18px;transition:color .15s;}
-  .prog-card:hover .prog-arrow{color:var(--teal);}
-
-  /* ---- add cards ---- */
-  .add-card{
-    border:1.5px dashed var(--line);border-radius:8px;padding:20px 16px;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-    cursor:pointer;background:transparent;font-family:'IBM Plex Sans',sans-serif;
-    transition:border-color .15s,color .15s;min-height:160px;
-  }
-  .add-card:hover{border-color:var(--teal);color:var(--teal);}
-  .add-card-icon{font-size:24px;color:var(--line);transition:color .15s;}
-  .add-card:hover .add-card-icon{color:var(--teal);}
-  .add-card-label{font-size:13px;font-weight:500;color:var(--ink-soft);}
-  .add-card-sub{font-size:11.5px;color:var(--ink-soft);opacity:.7;text-align:center;}
-  .add-card:hover .add-card-label{color:var(--teal);}
+  .org-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;}
+  .org-meta{font-size:12px;color:var(--ink-soft);margin-top:2px;}
 
   /* ---- assumption sets bar ---- */
-  .sets-bar{
-    padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line);
-  }
+  .sets-bar{padding:12px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);}
+  .sets-label{font-size:12px;color:var(--ink-soft);margin-right:4px;}
   .set-chip{
-    font-family:'IBM Plex Mono',monospace;font-size:12px;padding:5px 12px;border-radius:20px;
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:4px 12px;border-radius:20px;
     border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .15s;
   }
   .set-chip.active{background:var(--ink);color:#fff;border-color:var(--ink);}
   .set-chip:hover:not(.active){border-color:var(--teal);color:var(--teal);}
   .add-set-chip{
-    font-family:'IBM Plex Mono',monospace;font-size:12px;padding:5px 12px;border-radius:20px;
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:4px 12px;border-radius:20px;
     border:1.5px dashed var(--line);background:transparent;color:var(--ink-soft);cursor:pointer;transition:all .15s;
   }
   .add-set-chip:hover{border-color:var(--teal);color:var(--teal);}
 
+  /* ---- program list ---- */
+  .prog-list{display:flex;flex-direction:column;}
+  .prog-row{
+    display:flex;align-items:center;gap:16px;padding:14px 20px;
+    border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s;
+  }
+  .prog-row:last-child{border-bottom:none;}
+  .prog-row:hover{background:rgba(29,122,117,0.04);}
+  .prog-icon{
+    width:38px;height:38px;border-radius:8px;display:flex;align-items:center;
+    justify-content:center;flex-shrink:0;font-size:19px;
+  }
+  .prog-info{flex:1;min-width:0;}
+  .prog-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;}
+  .prog-desc{font-size:12.5px;color:var(--ink-soft);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .prog-meta{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .prog-cause{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 9px;border-radius:20px;white-space:nowrap;
+  }
+  .prog-studies-count{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-soft);white-space:nowrap;}
+  .prog-ev{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:var(--ink);white-space:nowrap;}
+  .prog-arrow{color:var(--line);font-size:18px;margin-left:4px;transition:color .15s;}
+  .prog-row:hover .prog-arrow{color:var(--teal);}
+
+  /* ---- add row ---- */
+  .add-row{
+    display:flex;align-items:center;gap:12px;padding:13px 20px;
+    border-top:1px solid var(--line);cursor:pointer;transition:background .12s;
+  }
+  .add-row:hover{background:rgba(29,122,117,0.04);}
+  .add-row-icon{
+    width:38px;height:38px;border-radius:8px;border:1.5px dashed var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--line);
+    transition:border-color .15s,color .15s;flex-shrink:0;
+  }
+  .add-row:hover .add-row-icon{border-color:var(--teal);color:var(--teal);}
+  .add-row-label{font-size:13.5px;color:var(--ink-soft);transition:color .15s;}
+  .add-row:hover .add-row-label{color:var(--teal);}
+
   /* ---- detail view ---- */
   #view-detail{display:none;}
   .back-btn{
-    display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:500;
-    color:var(--ink-soft);cursor:pointer;margin-bottom:16px;padding:6px 0;
-    border:none;background:transparent;font-family:'IBM Plex Sans',sans-serif;
-    transition:color .15s;
+    display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;
+    color:var(--ink-soft);cursor:pointer;margin-bottom:14px;padding:6px 0;
+    border:none;background:transparent;font-family:'IBM Plex Sans',sans-serif;transition:color .15s;
   }
   .back-btn:hover{color:var(--teal);}
-  .prog-detail-hero{padding:32px 0 24px;border-bottom:1px solid var(--line);}
-  .prog-detail-hero .eyebrow{color:var(--ink-soft);}
-  .prog-detail-hero .eyebrow::before{background:var(--ink-soft);}
+  .prog-detail-hero{padding:28px 0 22px;border-bottom:1px solid var(--line);}
+  .prog-detail-eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;
+    color:var(--ink-soft);text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:12px;
+  }
 
-  /* ---- studies grid ---- */
-  .studies-grid{padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  @media(max-width:900px){.studies-grid{grid-template-columns:1fr;}}
-
+  /* ---- studies list ---- */
+  .studies-list{display:flex;flex-direction:column;gap:0;}
   .study{
-    border:1px solid var(--line);border-radius:8px;padding:14px 16px;background:#fff;
+    border-bottom:1px solid var(--line);padding:16px 20px;background:#fff;
     display:flex;flex-direction:column;gap:10px;
   }
+  .study:last-child{border-bottom:none;}
   .study-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
-  .study-name{font-weight:600;font-size:14.5px;}
+  .study-name{font-weight:600;font-size:14px;}
   .study-cause{
-    font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--teal);
-    background:var(--teal-soft);padding:3px 8px;border-radius:20px;white-space:nowrap;margin-top:2px;
+    font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border-radius:20px;white-space:nowrap;margin-top:2px;flex-shrink:0;
   }
-  .study-curve{width:100%;height:44px;}
-  .prem-table{display:flex;flex-direction:column;gap:5px;border-top:1px solid var(--line);padding-top:9px;}
-  .prem-row{display:flex;align-items:baseline;justify-content:space-between;font-size:11.5px;}
-  .prem-label{color:var(--ink-soft);}
-  .prem-value{font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--ink);}
-  .conv{display:flex;align-items:center;gap:8px;font-size:12.5px;padding-top:8px;border-top:1px dashed var(--line);}
+  .prem-row-group{display:flex;gap:20px;flex-wrap:wrap;}
+  .prem-item{display:flex;flex-direction:column;gap:2px;}
+  .prem-label{font-size:11px;color:var(--ink-soft);}
+  .prem-value{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:500;color:var(--ink);}
+  .conv{display:flex;align-items:center;gap:8px;font-size:12.5px;padding-top:10px;border-top:1px dashed var(--line);}
   .conv .raw{color:var(--ink-soft);}
-  .conv .arrow{color:var(--line);}
-  .conv .norm{font-weight:600;color:var(--amber);font-family:'IBM Plex Mono',monospace;}
-  .conv-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.03em;text-transform:uppercase;color:var(--ink-soft);}
+  .conv .arr{color:var(--line);}
+  .conv .norm{font-weight:600;font-family:'IBM Plex Mono',monospace;}
+  .conv-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.03em;text-transform:uppercase;color:var(--ink-soft);margin-left:auto;}
 
   .add-study{
-    border:1.5px dashed var(--line);border-radius:8px;padding:16px;text-align:center;
+    border:none;border-top:1px solid var(--line);padding:13px 20px;text-align:left;
     color:var(--ink-soft);font-size:13px;cursor:pointer;background:transparent;width:100%;
-    font-family:'IBM Plex Sans',sans-serif;transition:border-color .15s,color .15s;
+    font-family:'IBM Plex Sans',sans-serif;transition:color .15s,background .12s;display:flex;align-items:center;gap:10px;
+    border-radius:0 0 var(--radius) var(--radius);
   }
-  .add-study:hover{border-color:var(--teal);color:var(--teal);}
+  .add-study:hover{background:rgba(29,122,117,0.04);color:var(--teal);}
 
   /* ---- simulation panel ---- */
   .sim-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;}
-  @media(max-width:900px){.sim-layout{grid-template-columns:1fr;}}
+  @media(max-width:700px){.sim-layout{grid-template-columns:1fr;}}
   .sim-col{padding:16px 20px;display:flex;flex-direction:column;gap:12px;}
   .sim-col.controls{border-right:1px solid var(--line);}
-  @media(max-width:900px){.sim-col.controls{border-right:none;border-bottom:1px solid var(--line);}}
+  @media(max-width:700px){.sim-col.controls{border-right:none;border-bottom:1px solid var(--line);}}
   .sim-subhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:2px;}
   .sim-subhead h3{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin:0;}
 
   .hint{
-    font-size:12.5px;line-height:1.5;color:var(--ink-soft);background:var(--paper);
-    border:1px solid var(--line);border-radius:7px;padding:9px 12px;margin:2px 0 4px;
+    font-size:12px;line-height:1.5;color:var(--ink-soft);background:var(--paper);
+    border:1px solid var(--line);border-radius:7px;padding:9px 12px;
   }
   .hint b{color:var(--ink);}
 
-  .control{margin-bottom:18px;}
+  .control{margin-bottom:16px;}
   .control:last-child{margin-bottom:0;}
-  .control-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;}
+  .control-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px;}
   .control-label span:first-child{color:var(--ink-soft);}
   .control-label .val{font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--ink);}
   input[type="range"]{-webkit-appearance:none;width:100%;height:4px;border-radius:2px;background:var(--line);outline:none;}
@@ -226,29 +207,30 @@
     width:16px;height:16px;border-radius:50%;background:var(--teal);border:3px solid #fff;box-shadow:0 0 0 1px var(--teal);cursor:pointer;
   }
 
-  .agg-curve-wrap{margin-top:6px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:14px 16px;}
-  .agg-curve-label{font-size:12px;color:var(--ink-soft);margin-bottom:6px;display:flex;justify-content:space-between;}
-  .agg-curve-label b{color:var(--ink);font-weight:600;}
+  /* aggregate distribution bar chart */
+  .agg-wrap{margin-top:4px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:12px 14px;}
+  .agg-label{font-size:11.5px;color:var(--ink-soft);margin-bottom:10px;display:flex;justify-content:space-between;}
+  .agg-label b{color:var(--ink);font-weight:600;}
+  .agg-bars{display:flex;flex-direction:column;gap:6px;}
+  .agg-bar-row{display:flex;align-items:center;gap:8px;font-size:11px;}
+  .agg-bar-name{width:90px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0;}
+  .agg-bar-track{flex:1;height:10px;background:var(--paper);border-radius:4px;overflow:hidden;border:1px solid var(--line);}
+  .agg-bar-fill{height:100%;border-radius:4px;transition:width .35s ease;}
+  .agg-bar-val{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink);width:36px;text-align:right;flex-shrink:0;}
 
-  .rank-row{display:grid;grid-template-columns:110px 1fr 56px;align-items:center;gap:10px;font-size:12.5px;padding:6px 0;}
+  .rank-row{display:grid;grid-template-columns:100px 1fr 52px;align-items:center;gap:10px;font-size:12px;padding:6px 0;}
   .rank-name{color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .rank-track{height:8px;background:var(--paper);border-radius:5px;overflow:hidden;border:1px solid var(--line);}
   .rank-fill{height:100%;border-radius:5px;transition:width .35s ease;}
   .rank-val{font-family:'IBM Plex Mono',monospace;text-align:right;color:var(--ink);}
 
-  .actions{display:flex;align-items:center;gap:12px;padding:16px 20px;border-top:1px solid var(--line);flex-wrap:wrap;}
+  .actions{display:flex;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid var(--line);flex-wrap:wrap;}
   .btn{
-    font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;font-weight:500;padding:9px 16px;border-radius:7px;
-    border:1px solid var(--line);background:#fff;color:var(--ink);cursor:not-allowed;opacity:0.55;
+    font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;padding:8px 15px;border-radius:7px;
+    border:1px solid var(--line);background:#fff;color:var(--ink);cursor:not-allowed;opacity:0.5;
   }
   .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
-  .actions .note{font-size:11.5px;color:var(--ink-soft);margin-left:auto;font-family:'IBM Plex Mono',monospace;}
-
-  .badge-row{display:flex;gap:10px;align-items:center;margin-top:28px;}
-  .oss-badge{
-    display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;
-    color:var(--ink-soft);border:1px solid var(--line);padding:5px 10px;border-radius:20px;background:var(--paper-raised);
-  }
+  .actions .note{font-size:11px;color:var(--ink-soft);margin-left:auto;font-family:'IBM Plex Mono',monospace;}
 
   @media(prefers-reduced-motion:reduce){*{transition:none !important;}}
 </style>
@@ -257,17 +239,12 @@
 
 <header>
   <div class="brand" onclick="showPortfolio()">
-    <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+    <svg width="28" height="28" viewBox="0 0 30 30" fill="none">
       <circle cx="15" cy="15" r="14" fill="var(--paper-raised)" stroke="var(--line)"/>
       <path d="M4 17c2-6 4-9 6-9s3 9 5 9 3-11 5-11 3 11 5 11" stroke="var(--teal)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
     </svg>
     <div class="brand-name">Harmonograph</div>
   </div>
-  <nav>
-    <a href="#" class="active">Portfolio</a>
-    <a href="#">Studies</a>
-    <a href="#">Documentation</a>
-  </nav>
 </header>
 
 <div class="wrap">
@@ -276,47 +253,49 @@
   <div id="view-portfolio">
 
     <section class="hero">
-      <div class="eyebrow">Visual prototype · MVP</div>
+      <div class="eyebrow">Visual prototype</div>
       <h1>Compare CEAs from different authors under the same assumptions.</h1>
       <p>Each study embeds its own premises implicitly. Add your organization's programs, attach cost-effectiveness analyses, and simulate how a shared assumption change shifts the ranking.</p>
     </section>
 
-    <!-- Organization panel -->
-    <div class="panel" style="margin-top:32px;">
+    <div class="panel" style="margin-top:16px;">
+
+      <!-- Org -->
       <div class="org-bar">
         <div class="org-avatar">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
         </div>
         <div class="org-info">
-          <div class="org-name">Instituto Saúde Brasil</div>
-          <div class="org-meta">3 programs · 7 studies · assumption set: EA Infrastructure baseline</div>
+          <div class="org-name">Health Investment Center</div>
+          <div class="org-meta" id="org-meta-text">3 programs · 7 studies</div>
         </div>
-        <button class="org-edit" type="button">Edit org</button>
       </div>
 
       <!-- Assumption sets -->
       <div class="sets-bar">
-        <span style="font-size:12px;color:var(--ink-soft);margin-right:4px;">Assumption set:</span>
+        <span class="sets-label">Assumption set:</span>
         <button class="set-chip active" type="button">EA Infrastructure baseline</button>
         <button class="set-chip" type="button">GiveWell 2024</button>
         <button class="set-chip" type="button">Conservative</button>
         <button class="add-set-chip" type="button" onclick="alert('+ New assumption set — coming in phase 1')">+ New set</button>
       </div>
 
-      <div class="panel-head" style="border-top:1px solid var(--line);">
+      <!-- Programs -->
+      <div class="panel-head">
         <h2>Programs</h2>
-        <div class="panel-head-right">
-          <span class="count" id="prog-count">3 programs</span>
-        </div>
+        <span class="count" id="prog-count">3 programs</span>
       </div>
 
-      <div class="programs-body" id="programs-grid">
-        <!-- rendered by JS -->
+      <div class="prog-list" id="programs-list"></div>
+
+      <div class="add-row" onclick="alert('Add program — upload CEA file or enter manually (phase 1)')">
+        <div class="add-row-icon">＋</div>
+        <span class="add-row-label">Add program</span>
       </div>
+
     </div>
-
 
   </div><!-- /view-portfolio -->
 
@@ -329,24 +308,25 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         Back to portfolio
       </button>
-      <div class="eyebrow" id="detail-eyebrow">Instituto Saúde Brasil</div>
-      <h1 id="detail-title">Program</h1>
-      <p id="detail-desc" style="font-size:16px;line-height:1.55;color:var(--ink-soft);max-width:600px;margin:0;"></p>
+      <div class="prog-detail-eyebrow" id="detail-eyebrow">Health Investment Center</div>
+      <h1 id="detail-title" style="margin:0 0 10px;">Program</h1>
+      <p id="detail-desc" style="font-size:15px;line-height:1.55;color:var(--ink-soft);max-width:580px;margin:0;"></p>
     </div>
 
-    <!-- Studies panel -->
+    <!-- Studies -->
     <div class="panel">
       <div class="panel-head">
         <h2>Studies in this program</h2>
-        <span class="count" id="study-count">— studies</span>
+        <span class="count" id="study-count">—</span>
       </div>
-      <div class="studies-grid" id="studies"></div>
-      <div style="padding:0 16px 16px;">
-        <button class="add-study" type="button">+ Add study (upload or link — phase 1)</button>
-      </div>
+      <div class="studies-list" id="studies"></div>
+      <button class="add-study" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add study — upload or link spreadsheet (phase 1)
+      </button>
     </div>
 
-    <!-- Simulation panel -->
+    <!-- Simulation -->
     <div class="panel">
       <div class="panel-head">
         <h2>Portfolio simulation</h2>
@@ -354,7 +334,7 @@
       </div>
       <div class="sim-layout">
         <div class="sim-col controls">
-          <div class="hint"><b>Studies above stay fixed</b> — they show each author's original assumptions and result. The controls below only recalculate the ranking on the right.</div>
+          <div class="hint"><b>Studies above stay fixed</b> — they show each author's original assumptions. The controls below only recalculate the ranking on the right.</div>
           <div class="control">
             <div class="control-label"><span>Annual discount rate</span><span class="val" id="v-discount">3%</span></div>
             <input type="range" id="discount" min="0" max="10" step="0.5" value="3">
@@ -367,26 +347,25 @@
             <div class="control-label"><span>Cross-species moral weight</span><span class="val" id="v-moral">0.05</span></div>
             <input type="range" id="moral" min="1" max="100" step="1" value="5">
           </div>
-          <div class="agg-curve-wrap">
-            <div class="agg-curve-label"><span>Aggregate distribution</span><b id="agg-mean">—</b></div>
-            <svg id="agg-curve" width="100%" height="70" viewBox="0 0 520 70" preserveAspectRatio="none"></svg>
+          <div class="agg-wrap">
+            <div class="agg-label"><span>Distribution under shared assumptions</span><b id="agg-mean">—</b></div>
+            <div class="agg-bars" id="agg-bars"></div>
           </div>
         </div>
         <div class="sim-col ranking">
           <div class="sim-subhead">
             <h3>Normalized ranking</h3>
-            <span class="count">expected value / $1,000</span>
+            <span class="count">EV / $1,000</span>
           </div>
           <div id="ranking"></div>
           <div class="actions" style="margin:8px -20px -16px;">
             <button class="btn" type="button">Save portfolio</button>
             <button class="btn primary" type="button">Publish portfolio</button>
-            <span class="note">illustrative data — no real calculation</span>
+            <span class="note">illustrative data</span>
           </div>
         </div>
       </div>
     </div>
-
 
   </div><!-- /view-detail -->
 
@@ -410,7 +389,7 @@ const programs = [
         cause: "Mental health",
         color: "#5B6EE1",
         raw: "$248 / year of depression-free life",
-        base: 58, amplitude: 12, freq: 1.1, phase: 0.3,
+        base: 58,
         origDiscount: 3, origHorizon: 10, origMoral: null
       },
       {
@@ -418,7 +397,7 @@ const programs = [
         cause: "Mental health",
         color: "#5B6EE1",
         raw: "$320 / DALY averted",
-        base: 44, amplitude: 18, freq: 0.9, phase: 1.2,
+        base: 44,
         origDiscount: 5, origHorizon: 8, origMoral: null
       }
     ]
@@ -433,11 +412,11 @@ const programs = [
     desc: "Reducing maternal and neonatal mortality through skilled birth attendance, antenatal care, and emergency obstetric access.",
     studies: [
       {
-        name: "Skilled birth attendance scale-up",
+        name: "Skilled birth attendance",
         cause: "Maternal health",
         color: "#B94F6A",
         raw: "$180 / DALY averted",
-        base: 72, amplitude: 9, freq: 1.3, phase: 0.7,
+        base: 72,
         origDiscount: 3, origHorizon: 15, origMoral: null
       },
       {
@@ -445,7 +424,7 @@ const programs = [
         cause: "Maternal health",
         color: "#B94F6A",
         raw: "$95 / DALY averted",
-        base: 86, amplitude: 7, freq: 0.8, phase: 2.1,
+        base: 86,
         origDiscount: 3, origHorizon: 12, origMoral: null
       },
       {
@@ -453,7 +432,7 @@ const programs = [
         cause: "Maternal health",
         color: "#B94F6A",
         raw: "$210 / death averted",
-        base: 61, amplitude: 14, freq: 1.5, phase: 0.4,
+        base: 61,
         origDiscount: 4, origHorizon: 10, origMoral: null
       }
     ]
@@ -472,7 +451,7 @@ const programs = [
         cause: "Cancer prevention",
         color: "#1D7A75",
         raw: "$42 / DALY averted",
-        base: 91, amplitude: 6, freq: 1.0, phase: 1.8,
+        base: 91,
         origDiscount: 3, origHorizon: 20, origMoral: null
       },
       {
@@ -480,7 +459,7 @@ const programs = [
         cause: "Cancer prevention",
         color: "#1D7A75",
         raw: "$67 / DALY averted",
-        base: 78, amplitude: 11, freq: 1.2, phase: 0.9,
+        base: 78,
         origDiscount: 3, origHorizon: 15, origMoral: null
       }
     ]
@@ -489,99 +468,60 @@ const programs = [
 
 // ─── HELPERS ────────────────────────────────────────────────────────────────
 
-function squigglePath(w, h, amp, freq, phase, seed){
-  const pts = [], steps = 48;
-  for(let i=0;i<=steps;i++){
-    const x = (i/steps)*w;
-    const t = (i/steps)*Math.PI*2*freq + phase;
-    const noise = Math.sin(t*2.7 + seed)*amp*0.18;
-    const y = h/2 + Math.sin(t)*amp*0.5 + noise;
-    pts.push([x,y]);
-  }
-  let d = `M ${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
-  for(let i=1;i<pts.length;i++) d += ` L ${pts[i][0].toFixed(1)} ${pts[i][1].toFixed(1)}`;
-  return d;
-}
-
 function computeValue(s, discount, horizon, moral){
   const df = Math.pow(1 - discount/100, horizon/12);
   const mf = s.cause === 'Animal welfare' ? (0.3 + (moral||0)*1.4) : 1;
-  const hf = 0.6 + Math.min(horizon,50)/50*0.8;
+  const hf = 0.6 + Math.min(horizon,50)/50 * 0.8;
   return Math.max(s.base * df * mf * hf, 1);
 }
 
 // ─── PORTFOLIO VIEW ─────────────────────────────────────────────────────────
 
 function renderPortfolio(){
-  const grid = document.getElementById('programs-grid');
-  grid.innerHTML = '';
+  const list = document.getElementById('programs-list');
+  list.innerHTML = '';
 
-  programs.forEach((p, pi) => {
-    // aggregate mini curve across studies
-    const avgAmp = p.studies.reduce((s,st)=>s+st.amplitude,0)/p.studies.length;
-    const d = squigglePath(280, 40, avgAmp, 1.0 + pi*0.2, pi*0.8, pi);
-    const avgVal = p.studies.reduce((s,st)=>s+computeValue(st,3,15,0.05),0)/p.studies.length;
+  programs.forEach(p => {
+    const avgVal = p.studies.reduce((s,st) => s + computeValue(st,3,15,0.05), 0) / p.studies.length;
 
-    const card = document.createElement('div');
-    card.className = 'prog-card';
-    card.onclick = () => showDetail(p.id);
-    card.innerHTML = `
-      <div class="prog-card-top">
-        <div class="prog-icon" style="background:${p.colorSoft};">${p.icon}</div>
-        <div style="flex:1;min-width:0;margin-left:10px;">
-          <div class="prog-name">${p.name}</div>
-        </div>
-        <div class="prog-cause" style="color:${p.color};background:${p.colorSoft};">${p.cause}</div>
+    const row = document.createElement('div');
+    row.className = 'prog-row';
+    row.onclick = () => showDetail(p.id);
+    row.innerHTML = `
+      <div class="prog-icon" style="background:${p.colorSoft};">${p.icon}</div>
+      <div class="prog-info">
+        <div class="prog-name">${p.name}</div>
+        <div class="prog-desc">${p.desc}</div>
       </div>
-      <svg class="prog-curve" viewBox="0 0 280 40" preserveAspectRatio="none">
-        <path d="${d}" stroke="${p.color}" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
-      </svg>
-      <div class="prog-stats">
-        <div class="prog-stat">
-          <div class="prog-stat-label">Studies</div>
-          <div class="prog-stat-val">${p.studies.length}</div>
-        </div>
-        <div class="prog-stat">
-          <div class="prog-stat-label">Avg. EV / $1k</div>
-          <div class="prog-stat-val">${avgVal.toFixed(1)} u</div>
-        </div>
-        <div class="prog-stat">
-          <div class="prog-stat-label">Assumption set</div>
-          <div class="prog-stat-val">baseline</div>
-        </div>
-        <div class="prog-arrow">›</div>
+      <div class="prog-meta">
+        <span class="prog-cause" style="color:${p.color};background:${p.colorSoft};">${p.cause}</span>
+        <span class="prog-studies-count">${p.studies.length} studies</span>
+        <span class="prog-ev">${avgVal.toFixed(1)} u/$1k</span>
       </div>
+      <div class="prog-arrow">›</div>
     `;
-    grid.appendChild(card);
+    list.appendChild(row);
   });
 
-  // Add program card
-  const addCard = document.createElement('button');
-  addCard.className = 'add-card';
-  addCard.type = 'button';
-  addCard.onclick = () => alert('Add program — upload CEA file or enter manually (phase 1)');
-  addCard.innerHTML = `
-    <div class="add-card-icon">＋</div>
-    <div class="add-card-label">Add program</div>
-    <div class="add-card-sub">Upload a spreadsheet or enter CEA manually</div>
-  `;
-  grid.appendChild(addCard);
-
   document.getElementById('prog-count').textContent = programs.length + ' programs';
+  const total = programs.reduce((s,p) => s + p.studies.length, 0);
+  document.getElementById('org-meta-text').textContent = `${programs.length} programs · ${total} studies`;
 }
 
 // ─── DETAIL VIEW ────────────────────────────────────────────────────────────
 
 let currentStudies = [];
+let currentProgram = null;
 
 function showDetail(id){
   const p = programs.find(x => x.id === id);
   if(!p) return;
   currentStudies = p.studies;
+  currentProgram = p;
 
   document.getElementById('view-portfolio').style.display = 'none';
   document.getElementById('view-detail').style.display = 'block';
-  document.getElementById('detail-eyebrow').textContent = 'Instituto Saúde Brasil · ' + p.name;
+  document.getElementById('detail-eyebrow').textContent = 'Health Investment Center · ' + p.name;
   document.getElementById('detail-title').textContent = p.name;
   document.getElementById('detail-desc').textContent = p.desc;
   document.getElementById('study-count').textContent = p.studies.length + ' studies';
@@ -593,7 +533,7 @@ function showDetail(id){
 
   p.studies.forEach((s, i) => {
     const origValue = computeValue(s, s.origDiscount, s.origHorizon, s.origMoral);
-    const d = squigglePath(300, 44, s.amplitude, s.freq, s.phase, i);
+
     const card = document.createElement('div');
     card.className = 'study';
     card.innerHTML = `
@@ -601,20 +541,26 @@ function showDetail(id){
         <div class="study-name">${s.name}</div>
         <div class="study-cause" style="color:${p.color};background:${p.colorSoft};">${s.cause}</div>
       </div>
-      <svg class="study-curve" viewBox="0 0 300 44" preserveAspectRatio="none">
-        <path d="${d}" stroke="${s.color}" stroke-width="2" fill="none" stroke-linecap="round"/>
-      </svg>
-      <div class="prem-table">
-        <div class="prem-row"><span class="prem-label">Discount rate</span><span class="prem-value">${s.origDiscount}%</span></div>
-        <div class="prem-row"><span class="prem-label">Time horizon</span><span class="prem-value">${s.origHorizon}y</span></div>
-        <div class="prem-row"><span class="prem-label">Moral weight</span><span class="prem-value">${s.origMoral === null ? 'n/a' : s.origMoral.toFixed(2)}</span></div>
+      <div class="prem-row-group">
+        <div class="prem-item">
+          <div class="prem-label">Discount rate</div>
+          <div class="prem-value">${s.origDiscount}%</div>
+        </div>
+        <div class="prem-item">
+          <div class="prem-label">Time horizon</div>
+          <div class="prem-value">${s.origHorizon}y</div>
+        </div>
+        <div class="prem-item">
+          <div class="prem-label">Moral weight</div>
+          <div class="prem-value">${s.origMoral === null ? 'n/a' : s.origMoral.toFixed(2)}</div>
+        </div>
       </div>
       <div class="conv">
         <span class="raw">${s.raw}</span>
-        <span class="arrow">→</span>
+        <span class="arr">→</span>
         <span class="norm" style="color:${p.color};">${origValue.toFixed(1)} u/$1k</span>
+        <span class="conv-tag">as published · fixed</span>
       </div>
-      <div class="conv-tag">as published — fixed</div>
     `;
     studiesEl.appendChild(card);
 
@@ -623,13 +569,12 @@ function showDetail(id){
     row.dataset.index = i;
     row.innerHTML = `
       <div class="rank-name">${s.name}</div>
-      <div class="rank-track"><div class="rank-fill" id="fill-${i}" style="background:${s.color};width:0%"></div></div>
+      <div class="rank-track"><div class="rank-fill" id="fill-${i}" style="background:${p.color};width:0%"></div></div>
       <div class="rank-val" id="rval-${i}">—</div>
     `;
     rankingEl.appendChild(row);
   });
 
-  // reset sliders
   document.getElementById('discount').value = 3;
   document.getElementById('horizon').value = 15;
   document.getElementById('moral').value = 5;
@@ -657,6 +602,7 @@ function recompute(){
   const values = currentStudies.map(s => computeValue(s, discount, horizon, moral));
   const max = Math.max(...values, 1);
 
+  // update ranking bars
   values.forEach((val, i) => {
     const fill = document.getElementById(`fill-${i}`);
     const rval = document.getElementById(`rval-${i}`);
@@ -664,32 +610,46 @@ function recompute(){
     if(rval) rval.textContent = val.toFixed(1);
   });
 
+  // sort ranking
   const rankingEl = document.getElementById('ranking');
   const rows = Array.from(rankingEl.children);
   rows.sort((a,b) => values[b.dataset.index] - values[a.dataset.index]);
   rows.forEach(r => rankingEl.appendChild(r));
 
-  if(currentStudies.length){
-    const aggAmp = currentStudies.reduce((s,st)=>s+st.amplitude,0)/currentStudies.length * (0.5 + (1 - discount/12));
-    const aggFreq = 1 * (0.6 + horizon/50);
-    const aggD = squigglePath(520, 70, aggAmp, aggFreq, 0.5, 9);
-    document.getElementById('agg-curve').innerHTML =
-      `<path d="${aggD}" stroke="#151C2C" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
+  // aggregate bar chart
+  if(currentStudies.length && currentProgram){
+    const aggBars = document.getElementById('agg-bars');
+    aggBars.innerHTML = '';
+    const sortedIdx = values.map((_,i)=>i).sort((a,b)=>values[b]-values[a]);
+    sortedIdx.forEach(i => {
+      const s = currentStudies[i];
+      const val = values[i];
+      const pct = ((val/max)*100).toFixed(0);
+      const div = document.createElement('div');
+      div.className = 'agg-bar-row';
+      div.innerHTML = `
+        <div class="agg-bar-name">${s.name}</div>
+        <div class="agg-bar-track"><div class="agg-bar-fill" style="width:${pct}%;background:${currentProgram.color};"></div></div>
+        <div class="agg-bar-val">${val.toFixed(1)}</div>
+      `;
+      aggBars.appendChild(div);
+    });
     const mean = values.reduce((a,b)=>a+b,0)/values.length;
-    document.getElementById('agg-mean').textContent = mean.toFixed(1) + ' u/$1k (mean)';
+    document.getElementById('agg-mean').textContent = 'mean: ' + mean.toFixed(1) + ' u/$1k';
   }
 }
 
-['discount','horizon','moral'].forEach(id => {
-  document.getElementById(id).addEventListener('input', recompute);
-});
+['discount','horizon','moral'].forEach(id =>
+  document.getElementById(id).addEventListener('input', recompute)
+);
 
-// Assumption set chips (visual only)
+// assumption set chips
 document.querySelectorAll('.set-chip').forEach(chip => {
   chip.addEventListener('click', function(){
     document.querySelectorAll('.set-chip').forEach(c => c.classList.remove('active'));
     this.classList.add('active');
-    document.getElementById('active-set-name').textContent = this.textContent;
+    const el = document.getElementById('active-set-name');
+    if(el) el.textContent = this.textContent;
     recompute();
   });
 });
