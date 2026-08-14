@@ -337,7 +337,7 @@
         </div>
         <div class="sim-col ranking">
           <div class="sim-subhead">
-            <h3>Sensitivity analysis</h3>
+            <h3>Simulation outcome</h3>
             <span class="count">EV / $1,000</span>
           </div>
           <div id="ranking"></div>
@@ -587,6 +587,7 @@ function renderPortfolio(){
 
 let currentStudies = [];
 let currentProgram = null;
+let currentStudyColors = [];
 
 function showDetail(id){
   const p = programs.find(x => x.id === id);
@@ -660,13 +661,17 @@ function showDetail(id){
   studiesEl.innerHTML = thead + tbody;
 
   // ── ranking rows ────────────────────────────────────────────────────────
+  // give each study a distinct color derived from the program palette
+  const STUDY_PALETTE = ['#5B6EE1','#C9860E','#1D7A75','#B94F6A','#6DAA5A','#8B5CF6'];
+  currentStudyColors = studies.map((_, i) => STUDY_PALETTE[i % STUDY_PALETTE.length]);
+
   studies.forEach((s, i) => {
     const row = document.createElement('div');
     row.className = 'rank-row';
     row.dataset.index = i;
     row.innerHTML = `
       <div class="rank-name">${s.name}</div>
-      <div class="rank-track"><div class="rank-fill" id="fill-${i}" style="background:${p.color};width:0%"></div></div>
+      <div class="rank-track"><div class="rank-fill" id="fill-${i}" style="background:${currentStudyColors[i]};width:0%"></div></div>
       <div class="rank-val" id="rval-${i}">—</div>
     `;
     rankingEl.appendChild(row);
@@ -676,7 +681,7 @@ function showDetail(id){
   document.getElementById('horizon').value = 15;
   document.getElementById('moral').value = 5;
   recompute();
-  drawSensCharts();
+  setTimeout(drawSensCharts, 0);
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -740,7 +745,7 @@ function recompute(){
 
 // ─── SENSITIVITY LINE CHARTS ─────────────────────────────────────────────────
 
-function makeSensChart({ title, xLabel, xMin, xMax, xSteps, getValue, currentX, studies, color }){
+function makeSensChart({ title, xLabel, xMin, xMax, xSteps, getValue, currentX, studies, studyColors }){
   const W = 260, H = 130, PL = 36, PR = 10, PT = 8, PB = 28;
   const iW = W - PL - PR, iH = H - PT - PB;
 
@@ -754,15 +759,13 @@ function makeSensChart({ title, xLabel, xMin, xMax, xSteps, getValue, currentX, 
   const px = x => PL + (x - xMin) / (xMax - xMin) * iW;
   const py = y => PT + iH - (y - yMin) / (yMax - yMin) * iH;
 
-  const COLORS = ['#5B6EE1', '#C9860E', '#1D7A75', '#B94F6A'];
-  const studyColors = studies.map((_, i) => color || COLORS[i % COLORS.length]);
-  // second study gets a lighter / complementary shade
-  const colors = studyColors.map((c, i) => i === 0 ? c : adjustColor(c));
+  const FALLBACK = ['#5B6EE1', '#C9860E', '#1D7A75', '#B94F6A'];
+  const colors = studies.map((_, i) => (studyColors && studyColors[i]) || FALLBACK[i % FALLBACK.length]);
 
-  // build polylines
+  // build polylines — all solid, different colors
   const polylines = series.map((ys, si) => {
     const pts = xs.map((x, xi) => `${px(x).toFixed(1)},${py(ys[xi]).toFixed(1)}`).join(' ');
-    return `<polyline points="${pts}" fill="none" stroke="${colors[si]}" stroke-width="${si===0?2:2}" stroke-dasharray="${si===0?'none':'5,3'}" stroke-linecap="round" stroke-linejoin="round"/>`;
+    return `<polyline points="${pts}" fill="none" stroke="${colors[si]}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
   }).join('');
 
   // vertical line at current value
@@ -796,7 +799,7 @@ function makeSensChart({ title, xLabel, xMin, xMax, xSteps, getValue, currentX, 
 
   const legend = studies.map((s, i) =>
     `<div class="sens-legend-item">
-      <div class="sens-legend-line" style="background:${colors[i]};${i===1?'background:none;border-bottom:2px dashed '+colors[i]+';':''}"></div>
+      <div class="sens-legend-line" style="background:${colors[i]};height:3px;border-radius:2px;"></div>
       <span>${s.name}</span>
     </div>`
   ).join('');
@@ -823,8 +826,6 @@ function drawSensCharts(){
   const discount = parseFloat(document.getElementById('discount').value);
   const horizon  = parseInt(document.getElementById('horizon').value);
   const coverage = parseInt(document.getElementById('moral').value) / 100;
-  const color    = currentProgram ? currentProgram.color : '#5B6EE1';
-
   const charts = [
     makeSensChart({
       title: 'Discount rate',
@@ -833,7 +834,7 @@ function drawSensCharts(){
       getValue: (s, x) => computeValue(s, x, horizon, coverage),
       currentX: discount,
       studies: currentStudies,
-      color
+      studyColors: currentStudyColors
     }),
     makeSensChart({
       title: 'Time horizon',
@@ -842,7 +843,7 @@ function drawSensCharts(){
       getValue: (s, x) => computeValue(s, discount, x, coverage),
       currentX: horizon,
       studies: currentStudies,
-      color
+      studyColors: currentStudyColors
     }),
     makeSensChart({
       title: 'Coverage rate',
@@ -851,7 +852,7 @@ function drawSensCharts(){
       getValue: (s, x) => computeValue(s, discount, horizon, x),
       currentX: coverage,
       studies: currentStudies,
-      color
+      studyColors: currentStudyColors
     })
   ];
 
