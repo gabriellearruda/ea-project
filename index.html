@@ -681,7 +681,7 @@ function showDetail(id){
   document.getElementById('horizon').value = 15;
   document.getElementById('moral').value = 5;
   recompute();
-  setTimeout(drawSensCharts, 0);
+  drawSensCharts();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -718,8 +718,8 @@ function recompute(){
   rows.sort((a,b) => values[b.dataset.index] - values[a.dataset.index]);
   rows.forEach(r => rankingEl.appendChild(r));
 
-  if(currentStudies.length && currentProgram){
-    const aggBars = document.getElementById('agg-bars');
+  const aggBars = document.getElementById('agg-bars');
+  if(currentStudies.length && currentProgram && aggBars){
     aggBars.innerHTML = '';
     const sortedIdx = values.map((_,i)=>i).sort((a,b)=>values[b]-values[a]);
     sortedIdx.forEach(i => {
@@ -735,7 +735,8 @@ function recompute(){
       aggBars.appendChild(div);
     });
     const mean = values.reduce((a,b)=>a+b,0)/values.length;
-    document.getElementById('agg-mean').textContent = 'mean: ' + mean.toFixed(1) + ' u/$1k';
+    const aggMean = document.getElementById('agg-mean');
+    if(aggMean) aggMean.textContent = 'mean: ' + mean.toFixed(1) + ' u/$1k';
   }
 }
 
