@@ -133,21 +133,21 @@
   .prog-detail-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:var(--ink-soft);text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:12px;}
 
   /* ---- studies comparison table ---- */
-  .studies-table-wrap{overflow-x:auto;padding:0;}
-  .studies-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  .studies-table-wrap{padding:0;}
+  .studies-table{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px;}
   .studies-table th,
-  .studies-table td{padding:10px 16px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap;}
+  .studies-table td{padding:10px 18px;border-bottom:1px solid var(--line);text-align:left;white-space:normal;word-break:break-word;vertical-align:top;}
+  /* column separators between studies */
+  .studies-table th:not(:first-child),
+  .studies-table td:not(:first-child){border-left:2px solid var(--line);}
   .studies-table thead th{
     font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
     color:var(--ink-soft);background:var(--paper);letter-spacing:0.02em;
-    position:sticky;top:0;
   }
-  .studies-table thead th:first-child{min-width:140px;}
+  .studies-table thead th:first-child{width:140px;min-width:120px;}
   .studies-table tbody tr:last-child td{border-bottom:none;}
   .studies-table tbody tr:hover td{background:rgba(29,122,117,0.03);}
-  .studies-table .row-label{
-    font-size:12px;color:var(--ink-soft);font-weight:500;
-  }
+  .studies-table .row-label{font-size:12px;color:var(--ink-soft);font-weight:500;}
   /* cell with diverging value */
   .cell-diff{
     background:var(--amber-soft) !important;
@@ -158,9 +158,7 @@
   /* EV result row */
   .row-ev td{border-top:2px solid var(--line);background:var(--paper);}
   .row-ev .row-label{color:var(--ink);font-weight:600;}
-  .ev-value{
-    font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;
-  }
+  .ev-value{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;}
   .ev-best{color:var(--teal);}
   .ev-worst{color:var(--ink-soft);}
   td.mono{font-family:'IBM Plex Mono',monospace;color:var(--ink);}
