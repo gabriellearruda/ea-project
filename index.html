@@ -80,6 +80,7 @@
   .org-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;}
   .org-meta{font-size:12px;color:var(--ink-soft);margin-top:2px;}
   .org-bar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .sets-bar{padding:12px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
   .sets-label{font-size:11.5px;color:var(--ink-soft);}
   .set-chip{
     font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 11px;border-radius:20px;
@@ -278,11 +279,6 @@
           <div class="org-meta" id="org-meta-text">3 programs · 7 studies</div>
         </div>
         <div class="org-bar-right">
-          <span class="sets-label">Assumptions:</span>
-          <button class="set-chip active" type="button">EA Infrastructure baseline</button>
-          <button class="set-chip" type="button">GiveWell 2024</button>
-          <button class="set-chip" type="button">Conservative</button>
-          <button class="add-set-chip" type="button" onclick="alert('+ New assumption set')">+ New set</button>
           <button class="sim-btn" type="button" onclick="showSimulation()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             Simulation
@@ -394,7 +390,13 @@
     <div class="panel">
       <div class="panel-head">
         <h2>Shared assumptions</h2>
-        <span class="count">assumption set: <span id="sim-active-set">EA Infrastructure baseline</span></span>
+      </div>
+      <div class="sets-bar" style="border-bottom:1px solid var(--line);">
+        <span class="sets-label">Assumption set:</span>
+        <button class="set-chip active" type="button">EA Infrastructure baseline</button>
+        <button class="set-chip" type="button">GiveWell 2024</button>
+        <button class="set-chip" type="button">Conservative</button>
+        <button class="add-set-chip" type="button" onclick="alert('+ New assumption set')">+ New set</button>
       </div>
       <div class="sim-layout">
         <div class="sim-col controls">
