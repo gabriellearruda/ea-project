@@ -199,7 +199,7 @@
   .agg-bar-fill{height:100%;border-radius:4px;transition:width .35s ease;}
   .agg-bar-val{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink);width:36px;text-align:right;flex-shrink:0;}
   .rank-row{display:grid;grid-template-columns:100px 1fr 52px;align-items:center;gap:10px;font-size:12px;padding:6px 0;}
-  .rank-name{color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .rank-name{color:var(--ink-soft);white-space:normal;line-height:1.35;}
   .rank-track{height:8px;background:var(--paper);border-radius:5px;overflow:hidden;border:1px solid var(--line);}
   .rank-fill{height:100%;border-radius:5px;transition:width .35s ease;}
   .rank-val{font-family:'IBM Plex Mono',monospace;text-align:right;color:var(--ink);}
@@ -329,7 +329,7 @@
         </div>
         <div class="sim-col ranking">
           <div class="sim-subhead">
-            <h3>Normalized ranking</h3>
+            <h3>Sensitivity analysis</h3>
             <span class="count">EV / $1,000</span>
           </div>
           <div id="ranking"></div>
@@ -657,7 +657,7 @@ function recompute(){
 
   document.getElementById('v-discount').textContent = discount + '%';
   document.getElementById('v-horizon').textContent  = horizon + ' years';
-  document.getElementById('v-moral').textContent    = moral.toFixed(2);
+  document.getElementById('v-moral').textContent    = (moral * 100).toFixed(0) + '%';
 
   const values = currentStudies.map(s => computeValue(s, discount, horizon, moral));
   const max = Math.max(...values, 1);
