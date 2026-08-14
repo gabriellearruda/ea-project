@@ -41,10 +41,7 @@
   :focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
 
   /* ---- header ---- */
-  header{
-    display:flex;align-items:center;
-    padding:22px 28px;max-width:900px;margin:0 auto;
-  }
+  header{display:flex;align-items:center;padding:22px 28px;max-width:900px;margin:0 auto;}
   .brand{display:flex;align-items:center;gap:12px;cursor:pointer;}
   .brand-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;letter-spacing:-0.01em;}
 
@@ -72,14 +69,20 @@
 
   /* ---- org bar ---- */
   .org-bar{padding:14px 20px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--line);flex-wrap:wrap;}
-  .org-avatar{
-    width:40px;height:40px;border-radius:9px;background:var(--teal);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  }
+  .org-avatar{width:40px;height:40px;border-radius:9px;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .org-info{flex:1;min-width:0;}
   .org-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;}
   .org-meta{font-size:12px;color:var(--ink-soft);margin-top:2px;}
-  .org-bar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .org-bar-right{display:flex;align-items:center;gap:8px;}
+  .sim-btn{
+    font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;
+    padding:7px 14px;border-radius:7px;border:1px solid var(--ink);
+    background:var(--ink);color:#fff;cursor:pointer;transition:background .15s;
+    display:flex;align-items:center;gap:6px;white-space:nowrap;
+  }
+  .sim-btn:hover{background:#2a3650;}
+
+  /* ---- assumption sets ---- */
   .sets-bar{padding:12px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
   .sets-label{font-size:11.5px;color:var(--ink-soft);}
   .set-chip{
@@ -93,55 +96,33 @@
     border:1.5px dashed var(--line);background:transparent;color:var(--ink-soft);cursor:pointer;transition:all .15s;
   }
   .add-set-chip:hover{border-color:var(--teal);color:var(--teal);}
-  .sim-btn{
-    font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;
-    padding:7px 14px;border-radius:7px;border:1px solid var(--ink);
-    background:var(--ink);color:#fff;cursor:pointer;transition:background .15s,border-color .15s;
-    display:flex;align-items:center;gap:6px;white-space:nowrap;
-  }
-  .sim-btn:hover{background:#2a3650;border-color:#2a3650;}
 
   /* ---- program list ---- */
   .prog-list{display:flex;flex-direction:column;}
-  .prog-row{
-    display:flex;align-items:center;gap:16px;padding:14px 20px;
-    border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s;
-  }
+  .prog-row{display:flex;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s;}
   .prog-row:last-child{border-bottom:none;}
   .prog-row:hover{background:rgba(29,122,117,0.04);}
-  .prog-icon{
-    width:38px;height:38px;border-radius:8px;display:flex;align-items:center;
-    justify-content:center;flex-shrink:0;font-size:19px;
-  }
+  .prog-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:19px;}
   .prog-info{flex:1;min-width:0;}
   .prog-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14.5px;}
   .prog-desc{font-size:12.5px;color:var(--ink-soft);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .prog-meta{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-  .prog-cause{
-    font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 9px;border-radius:20px;white-space:nowrap;
-  }
+  .prog-cause{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 9px;border-radius:20px;white-space:nowrap;}
   .prog-studies-count{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-soft);white-space:nowrap;}
   .prog-ev{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:var(--ink);white-space:nowrap;}
   .prog-arrow{color:var(--line);font-size:18px;margin-left:4px;transition:color .15s;}
   .prog-row:hover .prog-arrow{color:var(--teal);}
 
   /* ---- add row ---- */
-  .add-row{
-    display:flex;align-items:center;gap:12px;padding:13px 20px;
-    border-top:1px solid var(--line);cursor:pointer;transition:background .12s;
-  }
+  .add-row{display:flex;align-items:center;gap:12px;padding:13px 20px;border-top:1px solid var(--line);cursor:pointer;transition:background .12s;}
   .add-row:hover{background:rgba(29,122,117,0.04);}
-  .add-row-icon{
-    width:38px;height:38px;border-radius:8px;border:1.5px dashed var(--line);
-    display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--line);
-    transition:border-color .15s,color .15s;flex-shrink:0;
-  }
+  .add-row-icon{width:38px;height:38px;border-radius:8px;border:1.5px dashed var(--line);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--line);transition:border-color .15s,color .15s;flex-shrink:0;}
   .add-row:hover .add-row-icon{border-color:var(--teal);color:var(--teal);}
   .add-row-label{font-size:13.5px;color:var(--ink-soft);transition:color .15s;}
   .add-row:hover .add-row-label{color:var(--teal);}
 
-  /* ---- detail view ---- */
-  #view-detail{display:none;}
+  /* ---- back / detail ---- */
+  #view-detail,#view-simulation{display:none;}
   .back-btn{
     display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;
     color:var(--ink-soft);cursor:pointer;margin-bottom:14px;padding:6px 0;
@@ -149,25 +130,17 @@
   }
   .back-btn:hover{color:var(--teal);}
   .prog-detail-hero{padding:28px 0 22px;border-bottom:1px solid var(--line);}
-  .prog-detail-eyebrow{
-    font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;
-    color:var(--ink-soft);text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:12px;
-  }
+  .prog-detail-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.06em;color:var(--ink-soft);text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:12px;}
 
-  /* ---- studies list ---- */
+  /* ---- studies grid ---- */
   .studies-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:16px;}
   @media(max-width:800px){.studies-list{grid-template-columns:1fr 1fr;}}
   @media(max-width:520px){.studies-list{grid-template-columns:1fr;}}
-  .study{
-    border:1px solid var(--line);border-radius:8px;padding:14px 16px;background:#fff;
-    display:flex;flex-direction:column;gap:10px;
-  }
+  .study{border:1px solid var(--line);border-radius:8px;padding:14px 16px;background:#fff;display:flex;flex-direction:column;gap:10px;}
   .study-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
   .study-name{font-weight:600;font-size:14px;}
-  .study-cause{
-    font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border-radius:20px;white-space:nowrap;margin-top:2px;flex-shrink:0;
-  }
-  .prem-row-group{display:flex;gap:20px;flex-wrap:wrap;}
+  .study-cause{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 8px;border-radius:20px;white-space:nowrap;margin-top:2px;flex-shrink:0;}
+  .prem-row-group{display:flex;gap:16px;flex-wrap:wrap;}
   .prem-item{display:flex;flex-direction:column;gap:2px;}
   .prem-label{font-size:11px;color:var(--ink-soft);}
   .prem-value{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:500;color:var(--ink);}
@@ -176,7 +149,6 @@
   .conv .arr{color:var(--line);}
   .conv .norm{font-weight:600;font-family:'IBM Plex Mono',monospace;}
   .conv-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.03em;text-transform:uppercase;color:var(--ink-soft);margin-left:auto;}
-
   .add-study{
     border:none;border-top:1px solid var(--line);padding:13px 20px;text-align:left;
     color:var(--ink-soft);font-size:13px;cursor:pointer;background:transparent;width:100%;
@@ -185,7 +157,7 @@
   }
   .add-study:hover{background:rgba(29,122,117,0.04);color:var(--teal);}
 
-  /* ---- simulation panel ---- */
+  /* ---- simulation layout ---- */
   .sim-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;}
   @media(max-width:700px){.sim-layout{grid-template-columns:1fr;}}
   .sim-col{padding:16px 20px;display:flex;flex-direction:column;gap:12px;}
@@ -193,28 +165,16 @@
   @media(max-width:700px){.sim-col.controls{border-right:none;border-bottom:1px solid var(--line);}}
   .sim-subhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:2px;}
   .sim-subhead h3{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;margin:0;}
-
-  .hint{
-    font-size:12px;line-height:1.5;color:var(--ink-soft);background:var(--paper);
-    border:1px solid var(--line);border-radius:7px;padding:9px 12px;
-  }
-  .hint b{color:var(--ink);}
-
   .control{margin-bottom:16px;}
   .control:last-child{margin-bottom:0;}
   .control-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px;}
   .control-label span:first-child{color:var(--ink-soft);}
   .control-label .val{font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--ink);}
   input[type="range"]{-webkit-appearance:none;width:100%;height:4px;border-radius:2px;background:var(--line);outline:none;}
-  input[type="range"]::-webkit-slider-thumb{
-    -webkit-appearance:none;width:16px;height:16px;border-radius:50%;
-    background:var(--teal);border:3px solid #fff;box-shadow:0 0 0 1px var(--teal);cursor:pointer;margin-top:-6px;
-  }
-  input[type="range"]::-moz-range-thumb{
-    width:16px;height:16px;border-radius:50%;background:var(--teal);border:3px solid #fff;box-shadow:0 0 0 1px var(--teal);cursor:pointer;
-  }
+  input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--teal);border:3px solid #fff;box-shadow:0 0 0 1px var(--teal);cursor:pointer;margin-top:-6px;}
+  input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--teal);border:3px solid #fff;box-shadow:0 0 0 1px var(--teal);cursor:pointer;}
 
-  /* aggregate distribution bar chart */
+  /* ---- rank bars ---- */
   .agg-wrap{margin-top:4px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:12px 14px;}
   .agg-label{font-size:11.5px;color:var(--ink-soft);margin-bottom:10px;display:flex;justify-content:space-between;}
   .agg-label b{color:var(--ink);font-weight:600;}
@@ -224,19 +184,21 @@
   .agg-bar-track{flex:1;height:10px;background:var(--paper);border-radius:4px;overflow:hidden;border:1px solid var(--line);}
   .agg-bar-fill{height:100%;border-radius:4px;transition:width .35s ease;}
   .agg-bar-val{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink);width:36px;text-align:right;flex-shrink:0;}
-
   .rank-row{display:grid;grid-template-columns:100px 1fr 52px;align-items:center;gap:10px;font-size:12px;padding:6px 0;}
   .rank-name{color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .rank-track{height:8px;background:var(--paper);border-radius:5px;overflow:hidden;border:1px solid var(--line);}
   .rank-fill{height:100%;border-radius:5px;transition:width .35s ease;}
   .rank-val{font-family:'IBM Plex Mono',monospace;text-align:right;color:var(--ink);}
 
-  .actions{display:flex;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid var(--line);flex-wrap:wrap;}
+  /* ---- actions ---- */
+  .actions{display:flex;align-items:center;gap:10px;padding:14px 20px;border-top:1px solid var(--line);flex-wrap:wrap;}
   .btn{
     font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;padding:8px 15px;border-radius:7px;
     border:1px solid var(--line);background:#fff;color:var(--ink);cursor:not-allowed;opacity:0.5;
   }
   .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .btn.export{cursor:pointer;opacity:1;display:flex;align-items:center;gap:6px;border-color:var(--teal);color:var(--teal);}
+  .btn.export:hover{background:var(--teal-soft);}
   .actions .note{font-size:11px;color:var(--ink-soft);margin-left:auto;font-family:'IBM Plex Mono',monospace;}
 
   @media(prefers-reduced-motion:reduce){*{transition:none !important;}}
@@ -266,8 +228,6 @@
     </section>
 
     <div class="panel" style="margin-top:16px;">
-
-      <!-- Org -->
       <div class="org-bar">
         <div class="org-avatar">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -286,7 +246,6 @@
         </div>
       </div>
 
-      <!-- Programs -->
       <div class="panel-head">
         <h2>Programs</h2>
         <span class="count" id="prog-count">3 programs</span>
@@ -298,7 +257,6 @@
         <div class="add-row-icon">＋</div>
         <span class="add-row-label">Add program</span>
       </div>
-
     </div>
 
   </div><!-- /view-portfolio -->
@@ -317,7 +275,6 @@
       <p id="detail-desc" style="font-size:15px;line-height:1.55;color:var(--ink-soft);max-width:580px;margin:0;"></p>
     </div>
 
-    <!-- Studies -->
     <div class="panel">
       <div class="panel-head">
         <h2>Studies in this program</h2>
@@ -330,15 +287,13 @@
       </button>
     </div>
 
-    <!-- Simulation -->
     <div class="panel">
       <div class="panel-head">
-        <h2>Portfolio simulation</h2>
+        <h2>Simulation</h2>
         <span class="count">shared assumptions · <span id="active-set-name">EA Infrastructure baseline</span></span>
       </div>
       <div class="sim-layout">
         <div class="sim-col controls">
-          <div class="hint"><b>Studies above stay fixed</b> — they show each author's original assumptions. The controls below only recalculate the ranking on the right.</div>
           <div class="control">
             <div class="control-label"><span>Annual discount rate</span><span class="val" id="v-discount">3%</span></div>
             <input type="range" id="discount" min="0" max="10" step="0.5" value="3">
@@ -349,7 +304,7 @@
           </div>
           <div class="control">
             <div class="control-label"><span>Cross-species moral weight</span><span class="val" id="v-moral">0.05</span></div>
-            <input type="range" id="moral" min="1" max="100" step="1" value="5">
+            <input type="range" id="moral" min="0" max="100" step="1" value="5">
           </div>
           <div class="agg-wrap">
             <div class="agg-label"><span>Distribution under shared assumptions</span><b id="agg-mean">—</b></div>
@@ -375,7 +330,7 @@
 
 
   <!-- ========== SIMULATION VIEW ========== -->
-  <div id="view-simulation" style="display:none;">
+  <div id="view-simulation">
 
     <div class="prog-detail-hero">
       <button class="back-btn" onclick="showPortfolio()">
@@ -393,14 +348,13 @@
       </div>
       <div class="sets-bar" style="border-bottom:1px solid var(--line);">
         <span class="sets-label">Assumption set:</span>
-        <button class="set-chip active" type="button">EA Infrastructure baseline</button>
-        <button class="set-chip" type="button">GiveWell 2024</button>
-        <button class="set-chip" type="button">Conservative</button>
+        <button class="set-chip active" data-discount="3" data-horizon="15" data-moral="5" type="button">EA Infrastructure baseline</button>
+        <button class="set-chip" data-discount="3" data-horizon="10" data-moral="0" type="button">GiveWell 2024</button>
+        <button class="set-chip" data-discount="5" data-horizon="8" data-moral="2" type="button">Conservative</button>
         <button class="add-set-chip" type="button" onclick="alert('+ New assumption set')">+ New set</button>
       </div>
       <div class="sim-layout">
         <div class="sim-col controls">
-          <div class="hint"><b>Studies stay fixed</b> — they reflect each author's original assumptions. The controls below recalculate expected values under a common baseline for comparison.</div>
           <div class="control">
             <div class="control-label"><span>Annual discount rate</span><span class="val" id="sv-discount">3%</span></div>
             <input type="range" id="sdiscount" min="0" max="10" step="0.5" value="3">
@@ -411,7 +365,7 @@
           </div>
           <div class="control">
             <div class="control-label"><span>Cross-species moral weight</span><span class="val" id="sv-moral">0.05</span></div>
-            <input type="range" id="smoral" min="1" max="100" step="1" value="5">
+            <input type="range" id="smoral" min="0" max="100" step="1" value="5">
           </div>
         </div>
         <div class="sim-col ranking">
@@ -421,6 +375,10 @@
           </div>
           <div id="sim-ranking"></div>
           <div class="actions" style="margin:8px -20px -16px;">
+            <button class="btn export" type="button" onclick="exportCSV()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export CSV
+            </button>
             <button class="btn" type="button">Save portfolio</button>
             <button class="btn primary" type="button">Publish portfolio</button>
             <span class="note">illustrative data</span>
@@ -429,7 +387,6 @@
       </div>
     </div>
 
-    <!-- Per-program breakdown -->
     <div class="panel">
       <div class="panel-head">
         <h2>Breakdown by program</h2>
@@ -443,7 +400,7 @@
 </div><!-- /wrap -->
 
 <script>
-// ─── DATA ───────────────────────────────────────────────────────────────────
+// ─── DATA ────────────────────────────────────────────────────────────────────
 
 const programs = [
   {
@@ -456,20 +413,25 @@ const programs = [
     desc: "Scalable mental health interventions targeting depression and anxiety in LMICs, with emphasis on task-sharing models.",
     studies: [
       {
-        name: "StrongMinds group therapy",
+        name: "Group interpersonal therapy",
         cause: "Mental health",
-        color: "#5B6EE1",
         raw: "$248 / year of depression-free life",
-        base: 58,
+        base: 62,
         origDiscount: 3, origHorizon: 10, origMoral: null
       },
       {
         name: "Tele-counselling (rural)",
         cause: "Mental health",
-        color: "#5B6EE1",
         raw: "$320 / DALY averted",
-        base: 44,
+        base: 49,
         origDiscount: 5, origHorizon: 8, origMoral: null
+      },
+      {
+        name: "Peer support networks",
+        cause: "Mental health",
+        raw: "$190 / year of wellbeing",
+        base: 71,
+        origDiscount: 3, origHorizon: 12, origMoral: null
       }
     ]
   },
@@ -485,25 +447,22 @@ const programs = [
       {
         name: "Skilled birth attendance",
         cause: "Maternal health",
-        color: "#B94F6A",
         raw: "$180 / DALY averted",
-        base: 72,
+        base: 78,
         origDiscount: 3, origHorizon: 15, origMoral: null
       },
       {
         name: "Antenatal care package",
         cause: "Maternal health",
-        color: "#B94F6A",
         raw: "$95 / DALY averted",
-        base: 86,
+        base: 91,
         origDiscount: 3, origHorizon: 12, origMoral: null
       },
       {
         name: "Emergency obstetric referral",
         cause: "Maternal health",
-        color: "#B94F6A",
         raw: "$210 / death averted",
-        base: 61,
+        base: 65,
         origDiscount: 4, origHorizon: 10, origMoral: null
       }
     ]
@@ -520,41 +479,45 @@ const programs = [
       {
         name: "HPV vaccination program",
         cause: "Cancer prevention",
-        color: "#1D7A75",
         raw: "$42 / DALY averted",
-        base: 91,
+        base: 96,
         origDiscount: 3, origHorizon: 20, origMoral: null
       },
       {
         name: "VIA cervical screening",
         cause: "Cancer prevention",
-        color: "#1D7A75",
         raw: "$67 / DALY averted",
-        base: 78,
+        base: 83,
         origDiscount: 3, origHorizon: 15, origMoral: null
       }
     ]
   }
 ];
 
-// ─── HELPERS ────────────────────────────────────────────────────────────────
+// ─── ASSUMPTION SET PRESETS ──────────────────────────────────────────────────
+
+// Keyed by chip text content
+const presets = {
+  "EA Infrastructure baseline": { discount: 3,   horizon: 15, moral: 5  },
+  "GiveWell 2024":               { discount: 3,   horizon: 10, moral: 0  },
+  "Conservative":                { discount: 5,   horizon: 8,  moral: 2  }
+};
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
 
 function computeValue(s, discount, horizon, moral){
   const df = Math.pow(1 - discount/100, horizon/12);
-  const mf = s.cause === 'Animal welfare' ? (0.3 + (moral||0)*1.4) : 1;
   const hf = 0.6 + Math.min(horizon,50)/50 * 0.8;
-  return Math.max(s.base * df * mf * hf, 1);
+  return Math.max(s.base * df * hf, 1);
 }
 
-// ─── PORTFOLIO VIEW ─────────────────────────────────────────────────────────
+// ─── PORTFOLIO VIEW ──────────────────────────────────────────────────────────
 
 function renderPortfolio(){
   const list = document.getElementById('programs-list');
   list.innerHTML = '';
-
   programs.forEach(p => {
-    const avgVal = p.studies.reduce((s,st) => s + computeValue(st,3,15,0.05), 0) / p.studies.length;
-
+    const avgVal = p.studies.reduce((s,st) => s + computeValue(st,3,15,0), 0) / p.studies.length;
     const row = document.createElement('div');
     row.className = 'prog-row';
     row.onclick = () => showDetail(p.id);
@@ -573,13 +536,12 @@ function renderPortfolio(){
     `;
     list.appendChild(row);
   });
-
   document.getElementById('prog-count').textContent = programs.length + ' programs';
   const total = programs.reduce((s,p) => s + p.studies.length, 0);
   document.getElementById('org-meta-text').textContent = `${programs.length} programs · ${total} studies`;
 }
 
-// ─── DETAIL VIEW ────────────────────────────────────────────────────────────
+// ─── DETAIL VIEW ─────────────────────────────────────────────────────────────
 
 let currentStudies = [];
 let currentProgram = null;
@@ -592,6 +554,7 @@ function showDetail(id){
 
   document.getElementById('view-portfolio').style.display = 'none';
   document.getElementById('view-detail').style.display = 'block';
+  document.getElementById('view-simulation').style.display = 'none';
   document.getElementById('detail-eyebrow').textContent = 'Health Investment Center · ' + p.name;
   document.getElementById('detail-title').textContent = p.name;
   document.getElementById('detail-desc').textContent = p.desc;
@@ -603,8 +566,7 @@ function showDetail(id){
   rankingEl.innerHTML = '';
 
   p.studies.forEach((s, i) => {
-    const origValue = computeValue(s, s.origDiscount, s.origHorizon, s.origMoral);
-
+    const origValue = computeValue(s, s.origDiscount, s.origHorizon, s.origMoral || 0);
     const card = document.createElement('div');
     card.className = 'study';
     card.innerHTML = `
@@ -660,98 +622,7 @@ function showPortfolio(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ─── SIMULATION VIEW ────────────────────────────────────────────────────────
-
-function showSimulation(){
-  document.getElementById('view-portfolio').style.display = 'none';
-  document.getElementById('view-detail').style.display = 'none';
-  document.getElementById('view-simulation').style.display = 'block';
-
-  // active set label
-  const activeChip = document.querySelector('.set-chip.active');
-  if(activeChip) document.getElementById('sim-active-set').textContent = activeChip.textContent;
-
-  document.getElementById('sdiscount').value = 3;
-  document.getElementById('shorizon').value = 15;
-  document.getElementById('smoral').value = 5;
-  recomputeSim();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function recomputeSim(){
-  const discount = parseFloat(document.getElementById('sdiscount').value);
-  const horizon  = parseInt(document.getElementById('shorizon').value);
-  const moral    = parseInt(document.getElementById('smoral').value) / 100;
-
-  document.getElementById('sv-discount').textContent = discount + '%';
-  document.getElementById('sv-horizon').textContent  = horizon + ' years';
-  document.getElementById('sv-moral').textContent    = moral.toFixed(2);
-
-  // flatten all studies across programs
-  const allStudies = programs.flatMap(p => p.studies.map(s => ({...s, prog: p})));
-  const values = allStudies.map(s => computeValue(s, discount, horizon, moral));
-  const max = Math.max(...values, 1);
-  const totalStudies = allStudies.length;
-  document.getElementById('sim-total-studies').textContent = totalStudies + ' studies across ' + programs.length + ' programs';
-
-  // ranking panel
-  const rankingEl = document.getElementById('sim-ranking');
-  rankingEl.innerHTML = '';
-  const sorted = values.map((v,i) => ({v, i})).sort((a,b) => b.v - a.v);
-  sorted.forEach(({v, i}) => {
-    const s = allStudies[i];
-    const pct = ((v/max)*100).toFixed(0);
-    const row = document.createElement('div');
-    row.className = 'rank-row';
-    row.style.gridTemplateColumns = '130px 1fr 52px';
-    row.innerHTML = `
-      <div class="rank-name" title="${s.name} (${s.prog.name})">${s.name}</div>
-      <div class="rank-track"><div class="rank-fill" style="width:${pct}%;background:${s.prog.color};"></div></div>
-      <div class="rank-val">${v.toFixed(1)}</div>
-    `;
-    rankingEl.appendChild(row);
-  });
-
-  // per-program breakdown
-  const breakdown = document.getElementById('sim-breakdown');
-  breakdown.innerHTML = '';
-  programs.forEach(p => {
-    const pVals = p.studies.map(s => computeValue(s, discount, horizon, moral));
-    const pMax = Math.max(...pVals, 1);
-    const mean = pVals.reduce((a,b)=>a+b,0)/pVals.length;
-
-    const block = document.createElement('div');
-    block.innerHTML = `
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-        <div style="width:32px;height:32px;border-radius:7px;background:${p.colorSoft};display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">${p.icon}</div>
-        <div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13.5px;">${p.name}</div>
-          <div style="font-size:11.5px;color:var(--ink-soft);">mean: <span style="font-family:'IBM Plex Mono',monospace;color:${p.color};font-weight:500;">${mean.toFixed(1)} u/$1k</span></div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:6px;">
-        ${p.studies.map((s,i) => {
-          const v = pVals[i];
-          const pct = ((v/pMax)*100).toFixed(0);
-          return `<div style="display:grid;grid-template-columns:160px 1fr 52px;align-items:center;gap:10px;font-size:12px;">
-            <div style="color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${s.name}</div>
-            <div style="height:8px;background:var(--paper);border-radius:4px;overflow:hidden;border:1px solid var(--line);">
-              <div style="height:100%;width:${pct}%;background:${p.color};border-radius:4px;transition:width .35s ease;"></div>
-            </div>
-            <div style="font-family:'IBM Plex Mono',monospace;text-align:right;color:var(--ink);">${v.toFixed(1)}</div>
-          </div>`;
-        }).join('')}
-      </div>
-    `;
-    breakdown.appendChild(block);
-  });
-}
-
-['sdiscount','shorizon','smoral'].forEach(id =>
-  document.getElementById(id).addEventListener('input', recomputeSim)
-);
-
-// ─── SIMULATION ─────────────────────────────────────────────────────────────
+// ─── DETAIL SIMULATION ───────────────────────────────────────────────────────
 
 function recompute(){
   const discount = parseFloat(document.getElementById('discount').value);
@@ -765,7 +636,6 @@ function recompute(){
   const values = currentStudies.map(s => computeValue(s, discount, horizon, moral));
   const max = Math.max(...values, 1);
 
-  // update ranking bars
   values.forEach((val, i) => {
     const fill = document.getElementById(`fill-${i}`);
     const rval = document.getElementById(`rval-${i}`);
@@ -773,13 +643,11 @@ function recompute(){
     if(rval) rval.textContent = val.toFixed(1);
   });
 
-  // sort ranking
   const rankingEl = document.getElementById('ranking');
   const rows = Array.from(rankingEl.children);
   rows.sort((a,b) => values[b.dataset.index] - values[a.dataset.index]);
   rows.forEach(r => rankingEl.appendChild(r));
 
-  // aggregate bar chart
   if(currentStudies.length && currentProgram){
     const aggBars = document.getElementById('agg-bars');
     aggBars.innerHTML = '';
@@ -787,12 +655,11 @@ function recompute(){
     sortedIdx.forEach(i => {
       const s = currentStudies[i];
       const val = values[i];
-      const pct = ((val/max)*100).toFixed(0);
       const div = document.createElement('div');
       div.className = 'agg-bar-row';
       div.innerHTML = `
         <div class="agg-bar-name">${s.name}</div>
-        <div class="agg-bar-track"><div class="agg-bar-fill" style="width:${pct}%;background:${currentProgram.color};"></div></div>
+        <div class="agg-bar-track"><div class="agg-bar-fill" style="width:${((val/max)*100).toFixed(0)}%;background:${currentProgram.color};"></div></div>
         <div class="agg-bar-val">${val.toFixed(1)}</div>
       `;
       aggBars.appendChild(div);
@@ -806,19 +673,132 @@ function recompute(){
   document.getElementById(id).addEventListener('input', recompute)
 );
 
-// assumption set chips
-document.querySelectorAll('.set-chip').forEach(chip => {
+// ─── SIMULATION VIEW ─────────────────────────────────────────────────────────
+
+function showSimulation(){
+  document.getElementById('view-portfolio').style.display = 'none';
+  document.getElementById('view-detail').style.display = 'none';
+  document.getElementById('view-simulation').style.display = 'block';
+  document.getElementById('sdiscount').value = 3;
+  document.getElementById('shorizon').value  = 15;
+  document.getElementById('smoral').value    = 5;
+  recomputeSim();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function recomputeSim(){
+  const discount = parseFloat(document.getElementById('sdiscount').value);
+  const horizon  = parseInt(document.getElementById('shorizon').value);
+  const moral    = parseInt(document.getElementById('smoral').value) / 100;
+
+  document.getElementById('sv-discount').textContent = discount + '%';
+  document.getElementById('sv-horizon').textContent  = horizon + ' years';
+  document.getElementById('sv-moral').textContent    = moral.toFixed(2);
+
+  const allStudies = programs.flatMap(p => p.studies.map(s => ({...s, prog: p})));
+  const values = allStudies.map(s => computeValue(s, discount, horizon, moral));
+  const max = Math.max(...values, 1);
+
+  document.getElementById('sim-total-studies').textContent =
+    allStudies.length + ' studies across ' + programs.length + ' programs';
+
+  // global ranking
+  const rankingEl = document.getElementById('sim-ranking');
+  rankingEl.innerHTML = '';
+  values.map((v,i) => ({v,i}))
+    .sort((a,b) => b.v - a.v)
+    .forEach(({v,i}) => {
+      const s = allStudies[i];
+      const row = document.createElement('div');
+      row.className = 'rank-row';
+      row.style.gridTemplateColumns = '140px 1fr 52px';
+      row.innerHTML = `
+        <div class="rank-name" title="${s.name} (${s.prog.name})">${s.name}</div>
+        <div class="rank-track"><div class="rank-fill" style="width:${((v/max)*100).toFixed(0)}%;background:${s.prog.color};"></div></div>
+        <div class="rank-val">${v.toFixed(1)}</div>
+      `;
+      rankingEl.appendChild(row);
+    });
+
+  // per-program breakdown
+  const breakdown = document.getElementById('sim-breakdown');
+  breakdown.innerHTML = '';
+  programs.forEach(p => {
+    const pVals = p.studies.map(s => computeValue(s, discount, horizon, moral));
+    const pMax  = Math.max(...pVals, 1);
+    const mean  = pVals.reduce((a,b)=>a+b,0)/pVals.length;
+    const block = document.createElement('div');
+    block.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="width:32px;height:32px;border-radius:7px;background:${p.colorSoft};display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">${p.icon}</div>
+        <div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13.5px;">${p.name}</div>
+          <div style="font-size:11.5px;color:var(--ink-soft);">mean: <span style="font-family:'IBM Plex Mono',monospace;color:${p.color};font-weight:500;">${mean.toFixed(1)} u/$1k</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        ${p.studies.map((s,i) => {
+          const v = pVals[i];
+          return `<div style="display:grid;grid-template-columns:160px 1fr 52px;align-items:center;gap:10px;font-size:12px;">
+            <div style="color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${s.name}</div>
+            <div style="height:8px;background:var(--paper);border-radius:4px;overflow:hidden;border:1px solid var(--line);">
+              <div style="height:100%;width:${((v/pMax)*100).toFixed(0)}%;background:${p.color};border-radius:4px;transition:width .35s ease;"></div>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace;text-align:right;color:var(--ink);">${v.toFixed(1)}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    `;
+    breakdown.appendChild(block);
+  });
+
+  // store for export
+  window._lastSimValues = { allStudies, values, discount, horizon, moral };
+}
+
+['sdiscount','shorizon','smoral'].forEach(id =>
+  document.getElementById(id).addEventListener('input', recomputeSim)
+);
+
+// Assumption set chips → update sliders + recompute
+document.querySelectorAll('#view-simulation .set-chip').forEach(chip => {
   chip.addEventListener('click', function(){
-    document.querySelectorAll('.set-chip').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('#view-simulation .set-chip').forEach(c => c.classList.remove('active'));
     this.classList.add('active');
-    const el = document.getElementById('active-set-name');
-    if(el) el.textContent = this.textContent;
-    recompute();
+    const preset = presets[this.textContent.trim()];
+    if(preset){
+      document.getElementById('sdiscount').value = preset.discount;
+      document.getElementById('shorizon').value  = preset.horizon;
+      document.getElementById('smoral').value    = preset.moral;
+    }
+    recomputeSim();
   });
 });
 
-// ─── INIT ────────────────────────────────────────────────────────────────────
+// ─── EXPORT CSV ──────────────────────────────────────────────────────────────
+
+function exportCSV(){
+  const d = window._lastSimValues;
+  if(!d){ alert('Run a simulation first.'); return; }
+  const rows = [
+    ['Program','Study','Original cost metric','Original EV (u/$1k)',
+     `Simulated EV (u/$1k) — discount:${d.discount}% horizon:${d.horizon}y moral:${(d.moral).toFixed(2)}`]
+  ];
+  d.allStudies.forEach((s,i) => {
+    const orig = computeValue(s, s.origDiscount, s.origHorizon, s.origMoral || 0);
+    rows.push([s.prog.name, s.name, s.raw, orig.toFixed(2), d.values[i].toFixed(2)]);
+  });
+  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'harmonograph-simulation.csv';
+  a.click();
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
 renderPortfolio();
+showSimulation(); // start on simulation so _lastSimValues is primed
+showPortfolio();  // then go back to portfolio as landing page
 </script>
 </body>
 </html>
