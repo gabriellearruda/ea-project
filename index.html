@@ -417,25 +417,25 @@
 const programs = [
   {
     id: "mental",
-    name: "Mental Health",
+    name: "Group interpersonal therapy",
     icon: "🧠",
     color: "#5B6EE1",
     colorSoft: "#ECEFFE",
-    cause: "Global health",
-    desc: "Scalable mental health interventions targeting depression and anxiety in LMICs, with emphasis on task-sharing models.",
+    cause: "Mental health",
+    desc: "Group-based interpersonal therapy targeting depression in LMICs — same intervention assessed across two annual reports from the same organization.",
     studies: [
       {
         name: "Group interpersonal therapy — 2022",
         cause: "Mental health",
         raw: "$310 / year of depression-free life",
-        base: 58,
+        base: 95,
         origDiscount: 5, origHorizon: 8, origMoral: 0.52
       },
       {
         name: "Group interpersonal therapy — 2024",
         cause: "Mental health",
         raw: "$248 / year of depression-free life",
-        base: 71,
+        base: 55,
         origDiscount: 3, origHorizon: 10, origMoral: 0.67
       }
     ]
@@ -446,29 +446,22 @@ const programs = [
     icon: "🤱",
     color: "#B94F6A",
     colorSoft: "#F9E8ED",
-    cause: "Global health",
-    desc: "Reducing maternal and neonatal mortality through skilled birth attendance, antenatal care, and emergency obstetric access.",
+    cause: "Maternal health",
+    desc: "Antenatal care package evaluated across two reporting periods — same intervention, updated coverage and cost assumptions each year.",
     studies: [
       {
-        name: "Skilled birth attendance",
+        name: "Antenatal care package — 2021",
         cause: "Maternal health",
-        raw: "$180 / DALY averted",
-        base: 78,
-        origDiscount: 3, origHorizon: 15, origMoral: 0.71
+        raw: "$140 / DALY averted",
+        base: 52,
+        origDiscount: 5, origHorizon: 10, origMoral: 0.58
       },
       {
-        name: "Antenatal care package",
+        name: "Antenatal care package — 2023",
         cause: "Maternal health",
         raw: "$95 / DALY averted",
         base: 91,
         origDiscount: 3, origHorizon: 12, origMoral: 0.84
-      },
-      {
-        name: "Emergency obstetric referral",
-        cause: "Maternal health",
-        raw: "$210 / death averted",
-        base: 65,
-        origDiscount: 4, origHorizon: 10, origMoral: 0.45
       }
     ]
   },
@@ -478,22 +471,22 @@ const programs = [
     icon: "🔬",
     color: "#1D7A75",
     colorSoft: "#E4F0EE",
-    cause: "Global health",
-    desc: "Early detection and prevention programs for cervical and breast cancer in sub-Saharan Africa and South Asia.",
+    cause: "Cancer prevention",
+    desc: "HPV vaccination program evaluated across two reporting periods — same intervention, updated coverage and rollout assumptions.",
     studies: [
       {
-        name: "HPV vaccination program",
+        name: "HPV vaccination program — 2020",
+        cause: "Cancer prevention",
+        raw: "$78 / DALY averted",
+        base: 48,
+        origDiscount: 5, origHorizon: 15, origMoral: 0.60
+      },
+      {
+        name: "HPV vaccination program — 2023",
         cause: "Cancer prevention",
         raw: "$42 / DALY averted",
         base: 96,
         origDiscount: 3, origHorizon: 20, origMoral: 0.90
-      },
-      {
-        name: "VIA cervical screening",
-        cause: "Cancer prevention",
-        raw: "$67 / DALY averted",
-        base: 83,
-        origDiscount: 3, origHorizon: 15, origMoral: 0.67
       }
     ]
   }
@@ -510,10 +503,11 @@ const presets = {
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 
-function computeValue(s, discount, horizon, moral){
+function computeValue(s, discount, horizon, coverage){
   const df = Math.pow(1 - discount/100, horizon/12);
   const hf = 0.6 + Math.min(horizon,50)/50 * 0.8;
-  return Math.max(s.base * df * hf, 1);
+  const cf = 0.4 + (coverage || 0) * 1.2; // coverage rate scales expected reach
+  return Math.max(s.base * df * hf * cf, 1);
 }
 
 // ─── PORTFOLIO VIEW ──────────────────────────────────────────────────────────
