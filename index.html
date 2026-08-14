@@ -266,10 +266,16 @@
   <div id="view-detail">
 
     <div class="prog-detail-hero">
-      <button class="back-btn" onclick="showPortfolio()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        Back to portfolio
-      </button>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+        <button class="back-btn" style="margin-bottom:0;" onclick="showPortfolio()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Back to portfolio
+        </button>
+        <div style="display:flex;gap:8px;">
+          <button class="btn" type="button" style="opacity:0.5;cursor:not-allowed;">Save program</button>
+          <button class="btn primary" type="button" style="opacity:0.5;cursor:not-allowed;">Publish program</button>
+        </div>
+      </div>
       <div class="prog-detail-eyebrow" id="detail-eyebrow">Health Investment Center</div>
       <h1 id="detail-title" style="margin:0 0 10px;">Program</h1>
       <p id="detail-desc" style="font-size:15px;line-height:1.55;color:var(--ink-soft);max-width:580px;margin:0;"></p>
@@ -290,11 +296,7 @@
     <div class="panel">
       <div class="panel-head">
         <h2>Program simulation</h2>
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <span class="count">shared assumptions · <span id="active-set-name">EA Infrastructure baseline</span></span>
-          <button class="btn" type="button" style="opacity:0.5;cursor:not-allowed;">Save portfolio</button>
-          <button class="btn primary" type="button" style="opacity:0.5;cursor:not-allowed;">Publish portfolio</button>
-        </div>
+        <span class="count">shared assumptions · <span id="active-set-name">EA Infrastructure baseline</span></span>
       </div>
       <div class="sim-layout">
         <div class="sim-col controls">
