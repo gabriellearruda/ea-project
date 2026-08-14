@@ -323,7 +323,7 @@
             <input type="range" id="horizon" min="1" max="50" step="1" value="15">
           </div>
           <div class="control">
-            <div class="control-label"><span>Cross-species moral weight</span><span class="val" id="v-moral">0.05</span></div>
+            <div class="control-label"><span>Coverage rate</span><span class="val" id="v-moral">0.05</span></div>
             <input type="range" id="moral" min="0" max="100" step="1" value="5">
           </div>
         </div>
@@ -382,7 +382,7 @@
             <input type="range" id="shorizon" min="1" max="50" step="1" value="15">
           </div>
           <div class="control">
-            <div class="control-label"><span>Moral weight</span><span class="val" id="sv-moral">0.05</span></div>
+            <div class="control-label"><span>Coverage rate</span><span class="val" id="sv-moral">0.05</span></div>
             <input type="range" id="smoral" min="0" max="100" step="1" value="5">
           </div>
         </div>
@@ -613,7 +613,7 @@ function showDetail(id){
   let tbody = '<tbody>';
   tbody += makeRow('Discount rate',  discounts, v => v + '%',                    true);
   tbody += makeRow('Time horizon',   horizons,  v => v + ' years',               true);
-  tbody += makeRow('Moral weight',   morals,    v => v === null ? 'n/a' : v.toFixed(2), true);
+  tbody += makeRow('Coverage rate',   morals,    v => v === null ? 'n/a' : v.toFixed(2), true);
   tbody += makeRow('Cost metric',    studies.map(s => s.raw), v => v,            false);
 
   // EV result row — highlighted
