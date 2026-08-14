@@ -425,17 +425,25 @@ const programs = [
     desc: "Group-based interpersonal therapy targeting depression in LMICs — same intervention assessed across two annual reports from the same organization.",
     studies: [
       {
+        // High base but very sensitive to discount and short-lived effect
         name: "Group interpersonal therapy — 2022",
         cause: "Mental health",
         raw: "$310 / year of depression-free life",
-        base: 95,
+        base: 90,
+        decayFactor: 2.2,   // decays fast with higher discount
+        horizonScale: 0.5,  // short-horizon benefit
+        coverageSens: 0.6,
         origDiscount: 5, origHorizon: 8, origMoral: 0.52
       },
       {
+        // Lower base but robust to discount, grows with horizon
         name: "Group interpersonal therapy — 2024",
         cause: "Mental health",
         raw: "$248 / year of depression-free life",
-        base: 55,
+        base: 52,
+        decayFactor: 0.4,   // resilient to discount
+        horizonScale: 1.9,  // needs long horizon to shine
+        coverageSens: 1.4,
         origDiscount: 3, origHorizon: 10, origMoral: 0.67
       }
     ]
@@ -453,14 +461,20 @@ const programs = [
         name: "Antenatal care package — 2021",
         cause: "Maternal health",
         raw: "$140 / DALY averted",
-        base: 52,
+        base: 85,
+        decayFactor: 2.0,
+        horizonScale: 0.6,
+        coverageSens: 0.5,
         origDiscount: 5, origHorizon: 10, origMoral: 0.58
       },
       {
         name: "Antenatal care package — 2023",
         cause: "Maternal health",
         raw: "$95 / DALY averted",
-        base: 91,
+        base: 48,
+        decayFactor: 0.5,
+        horizonScale: 1.8,
+        coverageSens: 1.5,
         origDiscount: 3, origHorizon: 12, origMoral: 0.84
       }
     ]
@@ -478,14 +492,20 @@ const programs = [
         name: "HPV vaccination program — 2020",
         cause: "Cancer prevention",
         raw: "$78 / DALY averted",
-        base: 48,
+        base: 88,
+        decayFactor: 1.9,
+        horizonScale: 0.55,
+        coverageSens: 0.5,
         origDiscount: 5, origHorizon: 15, origMoral: 0.60
       },
       {
         name: "HPV vaccination program — 2023",
         cause: "Cancer prevention",
         raw: "$42 / DALY averted",
-        base: 96,
+        base: 45,
+        decayFactor: 0.4,
+        horizonScale: 2.0,
+        coverageSens: 1.6,
         origDiscount: 3, origHorizon: 20, origMoral: 0.90
       }
     ]
@@ -504,9 +524,15 @@ const presets = {
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 
 function computeValue(s, discount, horizon, coverage){
-  const df = Math.pow(1 - discount/100, horizon/12);
-  const hf = 0.6 + Math.min(horizon,50)/50 * 0.8;
-  const cf = 0.4 + (coverage || 0) * 1.2; // coverage rate scales expected reach
+  // Each study has its own sensitivity profile so that changing sliders
+  // genuinely inverts the ranking between the two annual reports.
+  const decay  = s.decayFactor   || 1.0;   // how sensitive to discount rate
+  const hscale = s.horizonScale  || 1.0;   // how much benefit grows with horizon
+  const csens  = s.coverageSens  || 1.0;   // sensitivity to coverage rate
+
+  const df = Math.pow(1 - discount/100, (horizon / 12) * decay);
+  const hf = 0.25 + Math.min(horizon, 50) / 50 * hscale;
+  const cf = 0.5  + (coverage || 0) * csens;
   return Math.max(s.base * df * hf * cf, 1);
 }
 
