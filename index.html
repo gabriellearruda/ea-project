@@ -71,7 +71,7 @@
   .count{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
 
   /* ---- org bar ---- */
-  .org-bar{padding:16px 20px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--line);}
+  .org-bar{padding:14px 20px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--line);flex-wrap:wrap;}
   .org-avatar{
     width:40px;height:40px;border-radius:9px;background:var(--teal);
     display:flex;align-items:center;justify-content:center;flex-shrink:0;
@@ -79,21 +79,26 @@
   .org-info{flex:1;min-width:0;}
   .org-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;}
   .org-meta{font-size:12px;color:var(--ink-soft);margin-top:2px;}
-
-  /* ---- assumption sets bar ---- */
-  .sets-bar{padding:12px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);}
-  .sets-label{font-size:12px;color:var(--ink-soft);margin-right:4px;}
+  .org-bar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .sets-label{font-size:11.5px;color:var(--ink-soft);}
   .set-chip{
-    font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:4px 12px;border-radius:20px;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 11px;border-radius:20px;
     border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .15s;
   }
   .set-chip.active{background:var(--ink);color:#fff;border-color:var(--ink);}
   .set-chip:hover:not(.active){border-color:var(--teal);color:var(--teal);}
   .add-set-chip{
-    font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:4px 12px;border-radius:20px;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 11px;border-radius:20px;
     border:1.5px dashed var(--line);background:transparent;color:var(--ink-soft);cursor:pointer;transition:all .15s;
   }
   .add-set-chip:hover{border-color:var(--teal);color:var(--teal);}
+  .sim-btn{
+    font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;
+    padding:7px 14px;border-radius:7px;border:1px solid var(--ink);
+    background:var(--ink);color:#fff;cursor:pointer;transition:background .15s,border-color .15s;
+    display:flex;align-items:center;gap:6px;white-space:nowrap;
+  }
+  .sim-btn:hover{background:#2a3650;border-color:#2a3650;}
 
   /* ---- program list ---- */
   .prog-list{display:flex;flex-direction:column;}
@@ -271,15 +276,17 @@
           <div class="org-name">Health Investment Center</div>
           <div class="org-meta" id="org-meta-text">3 programs · 7 studies</div>
         </div>
-      </div>
-
-      <!-- Assumption sets -->
-      <div class="sets-bar">
-        <span class="sets-label">Assumption set:</span>
-        <button class="set-chip active" type="button">EA Infrastructure baseline</button>
-        <button class="set-chip" type="button">GiveWell 2024</button>
-        <button class="set-chip" type="button">Conservative</button>
-        <button class="add-set-chip" type="button" onclick="alert('+ New assumption set — coming in phase 1')">+ New set</button>
+        <div class="org-bar-right">
+          <span class="sets-label">Assumptions:</span>
+          <button class="set-chip active" type="button">EA Infrastructure baseline</button>
+          <button class="set-chip" type="button">GiveWell 2024</button>
+          <button class="set-chip" type="button">Conservative</button>
+          <button class="add-set-chip" type="button" onclick="alert('+ New assumption set')">+ New set</button>
+          <button class="sim-btn" type="button" onclick="alert('Portfolio simulation — available when a program is selected')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Simulation
+          </button>
+        </div>
       </div>
 
       <!-- Programs -->
