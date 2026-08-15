@@ -1070,9 +1070,10 @@ document.addEventListener('click', e => {
     pop.querySelector('.premise-popover-source').textContent = d.source || '';
     pop.querySelector('.premise-popover-note').textContent   = d.note || '';
     const rect = btn.getBoundingClientRect();
-    let top  = rect.bottom + 8 + window.scrollY;
-    let left = rect.left + window.scrollX;
+    let top  = rect.bottom + 8;
+    let left = rect.left;
     if(left + 320 > window.innerWidth) left = window.innerWidth - 328;
+    if(top + 220 > window.innerHeight) top = rect.top - 220;
     pop.style.top  = top + 'px';
     pop.style.left = left + 'px';
     pop.classList.add('open');
