@@ -246,7 +246,7 @@
     <section class="hero">
       <div class="eyebrow">Visual prototype</div>
       <h1>Compare CEAs from different authors under the same assumptions.</h1>
-      <p>Each study embeds its own premises implicitly. Add your organization's programs, attach cost-effectiveness analyses, and simulate how a shared assumption change shifts the ranking.</p>
+      <p>Each evaluation embeds its own premises implicitly. Add your organization's programs, attach cost-effectiveness analyses, and simulate how a shared assumption change shifts the ranking.</p>
     </section>
 
     <div class="panel" style="margin-top:16px;">
@@ -258,7 +258,7 @@
         </div>
         <div class="org-info">
           <div class="org-name">Health Investment Center</div>
-          <div class="org-meta" id="org-meta-text">3 programs · 7 studies</div>
+          <div class="org-meta" id="org-meta-text">3 programs · 7 evaluations</div>
         </div>
         <div class="org-bar-right">
           <button class="sim-btn" type="button" onclick="showSimulation()">
@@ -305,13 +305,13 @@
 
     <div class="panel">
       <div class="panel-head">
-        <h2>Studies in this program</h2>
+        <h2>Evaluations in this program</h2>
         <span class="count" id="study-count">—</span>
       </div>
       <div class="studies-table-wrap"><table class="studies-table" id="studies"></table></div>
       <button class="add-study" type="button">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Add study — upload or link spreadsheet
+        Add evaluation — upload or link spreadsheet
       </button>
     </div>
 
@@ -375,7 +375,7 @@
       </div>
       <div class="prog-detail-eyebrow">Health Investment Center</div>
       <h1 style="margin:0 0 10px;">Portfolio simulation</h1>
-      <p style="font-size:15px;line-height:1.55;color:var(--ink-soft);max-width:580px;margin:0;">Adjust shared assumptions and see how the ranking and expected value distribution shift across all studies in the portfolio.</p>
+      <p style="font-size:15px;line-height:1.55;color:var(--ink-soft);max-width:580px;margin:0;">Adjust shared assumptions and see how the ranking and expected value distribution shift across all evaluations in the portfolio.</p>
     </div>
 
     <div class="panel">
@@ -406,7 +406,7 @@
         </div>
         <div class="sim-col ranking">
           <div class="sim-subhead">
-            <h3>Ranking — all studies</h3>
+            <h3>Ranking — all evaluations</h3>
             <span class="count">EV / $1,000</span>
           </div>
           <div id="sim-ranking"></div>
@@ -572,7 +572,7 @@ function renderPortfolio(){
       </div>
       <div class="prog-meta">
         <span class="prog-cause" style="color:${p.color};background:${p.colorSoft};">${p.cause}</span>
-        <span class="prog-studies-count">${p.studies.length} studies</span>
+        <span class="prog-studies-count">${p.studies.length} evaluations</span>
       </div>
       <div class="prog-arrow">›</div>
     `;
@@ -580,7 +580,7 @@ function renderPortfolio(){
   });
   document.getElementById('prog-count').textContent = programs.length + ' programs';
   const total = programs.reduce((s,p) => s + p.studies.length, 0);
-  document.getElementById('org-meta-text').textContent = `${programs.length} programs · ${total} studies`;
+  document.getElementById('org-meta-text').textContent = `${programs.length} programs · ${total} evaluations`;
 }
 
 // ─── DETAIL VIEW ─────────────────────────────────────────────────────────────
@@ -601,7 +601,7 @@ function showDetail(id){
   document.getElementById('detail-eyebrow').textContent = 'Health Investment Center · ' + p.name;
   document.getElementById('detail-title').textContent = p.name;
   document.getElementById('detail-desc').textContent = p.desc;
-  document.getElementById('study-count').textContent = p.studies.length + ' studies';
+  document.getElementById('study-count').textContent = p.studies.length + ' evaluations';
 
   const studiesEl = document.getElementById('studies');
   studiesEl.innerHTML = '';
@@ -887,7 +887,7 @@ function recomputeSim(){
   const max = Math.max(...values, 1);
 
   document.getElementById('sim-total-studies').textContent =
-    allStudies.length + ' studies across ' + programs.length + ' programs';
+    allStudies.length + ' evaluations across ' + programs.length + ' programs';
 
   // global ranking
   const rankingEl = document.getElementById('sim-ranking');
@@ -968,7 +968,7 @@ function exportCSV(){
   const d = window._lastSimValues;
   if(!d){ alert('Run a simulation first.'); return; }
   const rows = [
-    ['Program','Study','Original cost metric','Original EV (u/$1k)',
+    ['Program','Evaluation','Original cost metric','Original EV (u/$1k)',
      `Simulated EV (u/$1k) — discount:${d.discount}% horizon:${d.horizon}y moral:${(d.moral).toFixed(2)}`]
   ];
   d.allStudies.forEach((s,i) => {
