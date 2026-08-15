@@ -343,7 +343,7 @@
             <input type="range" id="horizon" min="1" max="50" step="1" value="15">
           </div>
           <div class="control">
-            <div class="control-label"><span>Coverage rate</span><span class="val" id="v-moral">0.05</span></div>
+            <div class="control-label"><span>Moral weight</span><span class="val" id="v-moral">0.05</span></div>
             <input type="range" id="moral" min="0" max="100" step="1" value="5">
           </div>
         </div>
@@ -412,7 +412,7 @@
             <input type="range" id="shorizon" min="1" max="50" step="1" value="15">
           </div>
           <div class="control">
-            <div class="control-label"><span>Coverage rate</span><span class="val" id="sv-moral">0.05</span></div>
+            <div class="control-label"><span>Moral weight</span><span class="val" id="sv-moral">0.05</span></div>
             <input type="range" id="smoral" min="0" max="100" step="1" value="5">
           </div>
         </div>
@@ -655,10 +655,10 @@ function showDetail(id){
       source: 'GiveWell Cost-Effectiveness Model (2024). Internal methodology note, v3.2. Available at givewell.org/how-we-work/our-criteria/cost-effectiveness.',
       note: 'Shorter horizons may undercount benefits of preventive interventions (e.g. HPV vaccination) whose full impact accrues over decades.'
     },
-    'Coverage rate': {
-      desc: 'Proportion of the eligible target population expected to receive and benefit from the intervention under realistic scale-up conditions.',
-      source: 'Jamison et al. (2018). Disease Control Priorities, 3rd ed., Vol. 9. World Bank Group / Oxford University Press.',
-      note: 'Coverage assumptions are among the most contested in CEAs. Small differences compound significantly when extrapolated to large populations.'
+    'Moral weight': {
+      desc: 'A multiplier reflecting the assumed moral value of outcomes for the affected population relative to a reference group, capturing uncertainty about welfare comparisons across contexts.',
+      source: 'Rethink Priorities (2023). Cross-Cause Cost-Effectiveness Model, v2.1. Available at ccm.rethinkpriorities.org. See also Ord, T. (2020). The Precipice. Bloomsbury Publishing.',
+      note: 'Moral weight is one of the most debated parameters in cross-cause comparisons. A value of 1.00× implies full parity with the reference group; values below 1.00× discount outcomes accordingly.'
     },
     'Cost metric': {
       desc: 'The primary cost-effectiveness ratio as reported by the original authors, prior to any assumption harmonisation.',
@@ -687,7 +687,7 @@ function showDetail(id){
   let tbody = '<tbody>';
   tbody += makeRow('Discount rate',  discounts, v => v + '%',                    true);
   tbody += makeRow('Time horizon',   horizons,  v => v + ' years',               true);
-  tbody += makeRow('Coverage rate',   morals,    v => v === null ? 'n/a' : (v * 100).toFixed(0) + '%', true);
+  tbody += makeRow('Moral weight',   morals,    v => v == null ? '0.50×' : v.toFixed(2) + '×', true);
   tbody += makeRow('Cost metric',    studies.map(s => s.raw), v => v,            false);
 
   // EV result row — highlighted
@@ -889,7 +889,7 @@ function drawSensCharts(){
       studyColors: currentStudyColors
     }),
     makeSensChart({
-      title: 'Coverage rate',
+      title: 'Moral weight',
       xLabel: v => (v*100).toFixed(0) + '%',
       xMin: 0, xMax: 1, xSteps: 50,
       getValue: (s, x) => computeValue(s, discount, horizon, x),
@@ -1045,10 +1045,10 @@ function openPremisePopover(btn, label){
       source: 'GiveWell Cost-Effectiveness Model (2024). Internal methodology note, v3.2. Available at givewell.org/how-we-work/our-criteria/cost-effectiveness.',
       note: 'Shorter horizons may undercount benefits of preventive interventions (e.g. HPV vaccination) whose full impact accrues over decades.'
     },
-    'Coverage rate': {
-      desc: 'Proportion of the eligible target population expected to receive and benefit from the intervention under realistic scale-up conditions.',
-      source: 'Jamison et al. (2018). Disease Control Priorities, 3rd ed., Vol. 9. World Bank Group / Oxford University Press.',
-      note: 'Coverage assumptions are among the most contested in CEAs. Small differences compound significantly when extrapolated to large populations.'
+    'Moral weight': {
+      desc: 'A multiplier reflecting the assumed moral value of outcomes for the affected population relative to a reference group, capturing uncertainty about welfare comparisons across contexts.',
+      source: 'Rethink Priorities (2023). Cross-Cause Cost-Effectiveness Model, v2.1. Available at ccm.rethinkpriorities.org. See also Ord, T. (2020). The Precipice. Bloomsbury Publishing.',
+      note: 'Moral weight is one of the most debated parameters in cross-cause comparisons. A value of 1.00× implies full parity with the reference group; values below 1.00× discount outcomes accordingly.'
     },
     'Cost metric': {
       desc: 'The primary cost-effectiveness ratio as reported by the original authors, prior to any assumption harmonisation.',
