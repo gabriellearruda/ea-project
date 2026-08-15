@@ -1047,36 +1047,38 @@ showSimulation(); // start on simulation so _lastSimValues is primed
 showPortfolio();  // then go back to portfolio as landing page
 
 // ─── PREMISE INFO POPOVER ────────────────────────────────────────────────────
-
-const popoverEl = document.getElementById('premise-popover');
+// Note: popoverEl is fetched lazily inside the handler because the
+// <div id="premise-popover"> lives after this <script> block in the DOM.
 
 document.addEventListener('click', e => {
+  const pop = document.getElementById('premise-popover');
+  if(!pop) return;
   const btn = e.target.closest('.premise-info-btn');
   if(btn){
     e.stopPropagation();
     const noteRaw = btn.dataset.note;
     if(!noteRaw) return;
-    const uid = btn.dataset.note.slice(0, 40);
-    if(popoverEl.classList.contains('open') && popoverEl.dataset.active === uid){
-      popoverEl.classList.remove('open');
+    const uid = noteRaw.slice(0, 40);
+    if(pop.classList.contains('open') && pop.dataset.active === uid){
+      pop.classList.remove('open');
       return;
     }
-    popoverEl.dataset.active = uid;
+    pop.dataset.active = uid;
     const d = JSON.parse(decodeURIComponent(noteRaw));
-    popoverEl.querySelector('.premise-popover-title').textContent = d.value || '';
-    popoverEl.querySelector('.premise-popover-desc').textContent  = '';
-    popoverEl.querySelector('.premise-popover-source').textContent = d.source || '';
-    popoverEl.querySelector('.premise-popover-note').textContent   = d.note || '';
+    pop.querySelector('.premise-popover-title').textContent  = d.value || '';
+    pop.querySelector('.premise-popover-desc').textContent   = '';
+    pop.querySelector('.premise-popover-source').textContent = d.source || '';
+    pop.querySelector('.premise-popover-note').textContent   = d.note || '';
     const rect = btn.getBoundingClientRect();
     let top  = rect.bottom + 8 + window.scrollY;
     let left = rect.left + window.scrollX;
     if(left + 320 > window.innerWidth) left = window.innerWidth - 328;
-    popoverEl.style.top  = top + 'px';
-    popoverEl.style.left = left + 'px';
-    popoverEl.classList.add('open');
+    pop.style.top  = top + 'px';
+    pop.style.left = left + 'px';
+    pop.classList.add('open');
     return;
   }
-  if(!popoverEl.contains(e.target)) popoverEl.classList.remove('open');
+  if(!pop.contains(e.target)) pop.classList.remove('open');
 });
 </script>
 
