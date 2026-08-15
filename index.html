@@ -204,6 +204,18 @@
   .rank-fill{height:100%;border-radius:5px;transition:width .35s ease;}
   .rank-val{font-family:'IBM Plex Mono',monospace;text-align:right;color:var(--ink);}
 
+  /* ---- premise info popover ---- */
+  .premise-label-wrap{display:flex;align-items:center;gap:5px;}
+  .premise-info-btn{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink-soft);cursor:pointer;padding:0;flex-shrink:0;transition:background .15s,color .15s;}
+  .premise-info-btn:hover{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .premise-popover{position:fixed;z-index:999;width:300px;background:var(--paper-raised);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 32px rgba(21,28,44,0.14);padding:16px 18px;font-size:13px;line-height:1.55;display:none;}
+  .premise-popover.open{display:block;}
+  .premise-popover-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;margin:0 0 8px;}
+  .premise-popover-desc{color:var(--ink);margin:0 0 10px;}
+  .premise-popover-source{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);background:var(--paper);border-radius:6px;padding:8px 10px;margin:0 0 10px;border:1px solid var(--line);}
+  .premise-popover-note{font-size:12px;color:var(--ink-soft);margin:0;}
+  .premise-popover-close{position:absolute;top:10px;right:12px;background:none;border:none;cursor:pointer;color:var(--ink-soft);font-size:16px;line-height:1;padding:2px 4px;}
+
   /* ---- sensitivity charts ---- */
   .sens-chart-wrap{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px 18px;}
   .sens-chart-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin:0 0 4px;}
@@ -631,10 +643,40 @@ function showDetail(id){
   });
   thead += '</tr></thead>';
 
+  // premise metadata — fictitious citations shown in the info popover
+  const premiseInfo = {
+    'Discount rate': {
+      desc: 'Rate at which future benefits are discounted to present value. Reflects time preference and opportunity cost of capital.',
+      source: 'Drummond et al. (2015). Methods for the Economic Evaluation of Health Care Programmes, 4th ed. Oxford University Press.',
+      note: 'The EA community commonly uses 3–5%. Higher rates favour interventions with near-term payoffs; lower rates favour long-horizon programs such as vaccination.'
+    },
+    'Time horizon': {
+      desc: 'Period over which health and welfare benefits are tracked after the intervention.',
+      source: 'GiveWell Cost-Effectiveness Model (2024). Internal methodology note, v3.2. Available at givewell.org/how-we-work/our-criteria/cost-effectiveness.',
+      note: 'Shorter horizons may undercount benefits of preventive interventions (e.g. HPV vaccination) whose full impact accrues over decades.'
+    },
+    'Coverage rate': {
+      desc: 'Proportion of the eligible target population expected to receive and benefit from the intervention under realistic scale-up conditions.',
+      source: 'Jamison et al. (2018). Disease Control Priorities, 3rd ed., Vol. 9. World Bank Group / Oxford University Press.',
+      note: 'Coverage assumptions are among the most contested in CEAs. Small differences compound significantly when extrapolated to large populations.'
+    },
+    'Cost metric': {
+      desc: 'The primary cost-effectiveness ratio as reported by the original authors, prior to any assumption harmonisation.',
+      source: 'As reported in each evaluation. See individual study citations for full methodology.',
+      note: 'Cost metrics are not directly comparable across evaluations — unit differences (DALY vs QALY vs depression-free year) reflect distinct measurement frameworks.'
+    }
+  };
+
   // body rows
   function makeRow(label, values, fmt, isDiff){
     const diff = !allSame(values);
-    let row = `<tr><td class="row-label">${label}</td>`;
+    const info = premiseInfo[label];
+    const infoBtn = info
+      ? `<button class="premise-info-btn" data-label="${label}" aria-label="More information about ${label}" type="button">
+           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="8"/><line x1="12" y1="12" x2="12" y2="16"/></svg>
+         </button>`
+      : '';
+    let row = `<tr><td class="row-label"><span class="premise-label-wrap">${label}${infoBtn}</span></td>`;
     values.forEach(v => {
       const highlight = diff && isDiff ? 'cell-diff' : 'mono';
       row += `<td class="${highlight}">${fmt(v)}</td>`;
@@ -986,6 +1028,74 @@ function exportCSV(){
 renderPortfolio();
 showSimulation(); // start on simulation so _lastSimValues is primed
 showPortfolio();  // then go back to portfolio as landing page
+
+// ─── PREMISE INFO POPOVER ────────────────────────────────────────────────────
+
+const popoverEl = document.getElementById('premise-popover');
+
+function openPremisePopover(btn, label){
+  const info = {
+    'Discount rate': {
+      desc: 'Rate at which future benefits are discounted to present value. Reflects time preference and opportunity cost of capital.',
+      source: 'Drummond et al. (2015). Methods for the Economic Evaluation of Health Care Programmes, 4th ed. Oxford University Press.',
+      note: 'The EA community commonly uses 3–5%. Higher rates favour interventions with near-term payoffs; lower rates favour long-horizon programs such as vaccination.'
+    },
+    'Time horizon': {
+      desc: 'Period over which health and welfare benefits are tracked after the intervention.',
+      source: 'GiveWell Cost-Effectiveness Model (2024). Internal methodology note, v3.2. Available at givewell.org/how-we-work/our-criteria/cost-effectiveness.',
+      note: 'Shorter horizons may undercount benefits of preventive interventions (e.g. HPV vaccination) whose full impact accrues over decades.'
+    },
+    'Coverage rate': {
+      desc: 'Proportion of the eligible target population expected to receive and benefit from the intervention under realistic scale-up conditions.',
+      source: 'Jamison et al. (2018). Disease Control Priorities, 3rd ed., Vol. 9. World Bank Group / Oxford University Press.',
+      note: 'Coverage assumptions are among the most contested in CEAs. Small differences compound significantly when extrapolated to large populations.'
+    },
+    'Cost metric': {
+      desc: 'The primary cost-effectiveness ratio as reported by the original authors, prior to any assumption harmonisation.',
+      source: 'As reported in each evaluation. See individual study citations for full methodology.',
+      note: 'Cost metrics are not directly comparable across evaluations — unit differences (DALY vs QALY vs depression-free year) reflect distinct measurement frameworks.'
+    }
+  };
+  const d = info[label];
+  if(!d) return;
+  popoverEl.querySelector('.premise-popover-title').textContent = label;
+  popoverEl.querySelector('.premise-popover-desc').textContent = d.desc;
+  popoverEl.querySelector('.premise-popover-source').textContent = d.source;
+  popoverEl.querySelector('.premise-popover-note').textContent = d.note;
+
+  const rect = btn.getBoundingClientRect();
+  const top  = rect.bottom + 8 + window.scrollY;
+  let   left = rect.left + window.scrollX;
+  if(left + 310 > window.innerWidth) left = window.innerWidth - 320;
+  popoverEl.style.top  = top + 'px';
+  popoverEl.style.left = left + 'px';
+  popoverEl.classList.add('open');
+}
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.premise-info-btn');
+  if(btn){
+    e.stopPropagation();
+    const label = btn.dataset.label;
+    if(popoverEl.classList.contains('open') && popoverEl.dataset.active === label){
+      popoverEl.classList.remove('open');
+    } else {
+      popoverEl.dataset.active = label;
+      openPremisePopover(btn, label);
+    }
+    return;
+  }
+  if(!popoverEl.contains(e.target)) popoverEl.classList.remove('open');
+});
 </script>
+
+<div class="premise-popover" id="premise-popover" role="tooltip">
+  <button class="premise-popover-close" onclick="document.getElementById('premise-popover').classList.remove('open')" aria-label="Close">×</button>
+  <p class="premise-popover-title"></p>
+  <p class="premise-popover-desc"></p>
+  <p class="premise-popover-source"></p>
+  <p class="premise-popover-note"></p>
+</div>
+
 </body>
 </html>
